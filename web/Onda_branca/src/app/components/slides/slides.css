@@ -1,34 +1,22 @@
 .circle {
-  width: 384px;
-  height: 393px;
-  background-color: #c8a2c821;
+  width: 320px;
+  height: 320px;
+  background-color: #ebe3ec9a;
   aspect-ratio: 1 / 1; /* mantém proporção 1:1 (sempre um círculo) */
   border-radius: 50%;
-  margin-top: 100px;
-  margin-left: 186.79px;
-
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  padding: 20px; /* para o texto não colar nas bordas */
-  box-sizing: border-box;
+  margin-top: 8rem;
+  overflow: hidden;
+  padding: 20px;
 }
-
 .circle-blu {
-  width: 384px;
-  height: 393px;
-  background-color: #c8a2c821;
+  width: 320px;
+  height: 320px;
+  background-color: #d3edfe4b !important;
+  aspect-ratio: 1 / 1; /* mantém proporção 1:1 (sempre um círculo) */
   border-radius: 50%;
-  margin-top: 350px;
-  margin-left: 166.79px;
-
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  padding: 20px; /* para o texto não colar nas bordas */
-  box-sizing: border-box;
+  margin-top: 8rem;
+  overflow: hidden;
+  padding: 20px;
 }
 
 .uk-slidenav-previous, .uk-slidenav-next {
@@ -37,5 +25,11 @@
 
 button:hover{
   background-color: #00A6FB !important;
-  color: white !important;
+  color: #EBE3EC !important;
 }
+
+.button:hover{
+  background-color: #9A74A1 !important;
+  color: #EBE3EC !important;
+}
+
