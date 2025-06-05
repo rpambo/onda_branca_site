@@ -1,0 +1,18 @@
+.uk-navbar-center{
+  background-color: #c8a2c821;
+  border-radius: 20px;
+  padding: 25px;
+  height: 60px;
+}
+
+.uk-navbar-nav li a {
+  font-size: 13px !important;
+  color:#9B73A3;
+  font-weight: bold;
+}
+
+.uk-navbar-nav > li.uk-active > a {
+  color: #00A6FB !important; /* azul */
+  border-radius: 20px; /* opcional para bordas arredondadas */
+}
+
