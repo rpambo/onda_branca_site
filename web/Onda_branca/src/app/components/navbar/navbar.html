@@ -5,7 +5,7 @@
         <img width="120px" src="imagens/logo2.png" alt="">
       </a>
     </div>
-    <div class="uk-navbar-center">
+    <div class="uk-navbar-center uk-visible@m">
       <ul class="uk-navbar-nav">
         <li><a href="">Home</a></li>
         <li><a href="">Sobre nós</a></li>
@@ -16,7 +16,26 @@
       </ul>
     </div>
     <div class="uk-navbar-right">
-      <button class="uk-button uk-button-small" style="border-radius: 20px; background-color: #00A6FB; color: #EBE3EC; font-size: 10px;">Contactar</button>
+      <a href="#off-canvas" class="uk-icon-button uk-hidden@m" style="background-color: #00A6FB; color: white;" uk-toggle uk-icon="icon: menu"></a>
+      <button class="uk-button uk-button-small uk-visible@m" style="border-radius: 20px; background-color: #00A6FB; color: #EBE3EC; font-size: 10px;">Contactar</button>
     </div>
   </nav>
+</div>
+
+
+<div id="off-canvas" uk-offcanvas="mode: slide; overlay: true">
+  <div class="uk-offcanvas-bar">
+
+    <a href="" class="uk-offcanvas-close uk-icon-button"  style="background-color: #00A6FB; color: white;" uk-close></a>
+    <ul class="uk-nav uk-offcanvas-default">
+      <li><a href="">Home</a></li>
+        <li><a href="">Sobre nós</a></li>
+        <li><a href="">Serviços</a></li>
+        <li><a href="">Testemunhos</a></li>
+        <li><a href="">Publicações</a></li>
+        <li><a href="">Comunidade</a></li>
+        <hr class="uk-divider-icon">
+        <button class="uk-button uk-button-small" style="border-radius: 20px; background-color: #00A6FB; color: #EBE3EC; font-size: 10px;">Contactar</button>
+    </ul>
+  </div>
 </div>

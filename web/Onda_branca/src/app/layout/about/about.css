@@ -1,0 +1,39 @@
+p, span {
+    color: #012C42;
+}
+
+button:hover{
+  background-color: #9A74A1 !important;
+  color: #EBE3EC !important;
+}
+
+.uk-slidenav-previous,
+.uk-slidenav-next {
+  z-index: 1000;
+  color: #072132 !important; /* ou #fff para fundo escuro */
+}
+
+.uk-position-center-left-out, .uk-position-center-right-out {
+    color: #9A74A1 !important;
+}
+
+
+@media (max-width: 768px) {
+  .uk-slider-items {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  .uk-slider-items > div {
+    text-align: center;
+    display: block;
+  }
+
+  .uk-slider-items img {
+    margin: 0 auto;
+  }
+
+  .destaque{
+    margin-bottom: 20px;
+  }
+}
