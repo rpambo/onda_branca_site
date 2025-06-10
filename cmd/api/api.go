@@ -2,18 +2,31 @@ package main
 
 import (
 	"net/http"
+	"time"
 
 	"github.com/go-chi/chi/v5"
 	"github.com/go-chi/chi/v5/middleware"
 	"github.com/go-chi/cors"
+	"github.com/rpambo/onda_branca_site/internal/store"
+	"go.uber.org/zap"
 )
 
 type application struct {
-	config config
+	config		*config
+	store		store.Storage
+	logger		*zap.SugaredLogger
 }
 
 type config struct {
-	addr string
+	Addr		string
+	DB			dbConfig
+}
+
+type dbConfig struct {
+	Addr			string
+	MaxOpenConns	int
+	MaxIdleConns	int
+	MaxIdleTime		string
 }
 
 func (app *application) mount() http.Handler {
@@ -48,8 +61,11 @@ func (app *application) mount() http.Handler {
 
 func (app *application) run(mux http.Handler) error{
 	srv := http.Server{
-		Addr: app.config.addr,
+		Addr: app.config.Addr,
 		Handler: mux,
+		ReadTimeout: time.Second * 30,
+		WriteTimeout: time.Second * 30,
+		IdleTimeout: time.Minute,
 	}
 
 	return srv.ListenAndServe()
