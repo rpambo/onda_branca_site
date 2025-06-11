@@ -24,6 +24,10 @@ button:hover{
     padding-right: 1rem;
   }
 
+  .title{
+    margin-top: 10px !important;
+  }
+
   .uk-slider-items > div {
     text-align: center;
     display: block;
