@@ -4,6 +4,7 @@
 
 .circle-blu {
   background-color: #1d85c610 !important;
+  
 }
 
 .uk-slidenav-previous, .uk-slidenav-next {
@@ -22,17 +23,16 @@ button:hover{
 
 .circle, .circle-blu {
   width: 90%;
-  max-width: 320px;
+  max-width: 340px;
   aspect-ratio: 1 / 1;
   border-radius: 50%;
   margin: 7rem auto 0 auto;
   overflow: hidden;
   padding: 20px;
+  
 }
 
-.uk-slideshow-items, .uk-slideshow-item, .uk-slide {
-  height: 100vh;
-}
+
 
 /* Ajustes para telas menores */
 @media (max-width: 768px) {
@@ -42,6 +42,9 @@ button:hover{
     margin: 1rem auto 0 auto;
   }
 
+  .space-top{
+    padding-top: 100px;
+  }
   .uk-button {
     font-size: 12px;
     padding: 8px 16px;
@@ -56,5 +59,9 @@ button:hover{
   img {
     max-width: 90%;
     height: auto;
+  }
+
+  .uk-slideshow-items, .uk-slideshow-item, .uk-slide {
+    height: 100vh;
   }
 }

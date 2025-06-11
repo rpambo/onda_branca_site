@@ -1,3 +1,10 @@
+/* Navbar transparente inicial */
+.uk-navbar-transparent {
+  background-color: transparent !important;
+  transition: background-color 0.3s ease-in-out;
+}
+
+/* Estilos existentes que você já tem */
 .uk-navbar-center{
   background-color: rgba(128, 128, 128, 0.055);
   border-radius: 20px;
@@ -11,8 +18,8 @@
 }
 
 .uk-navbar-nav > li.uk-active > a {
-  color: #00A6FB !important; /* azul */
-  border-radius: 20px; /* opcional para bordas arredondadas */
+  color: #00A6FB !important;
+  border-radius: 20px;
 }
 
 .uk-navbar-nav li a:hover{
@@ -22,4 +29,29 @@
 button:hover{
   background-color: #9A74A1 !important;
   color: #EBE3EC !important;
+}
+
+.custom-navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 9999;
+  background-color: transparent !important;
+  backdrop-filter: blur(0px);
+  -webkit-backdrop-filter: blur(0px);
+  transition: all 0.3s ease-in-out;
+}
+
+.custom-navbar.scrolled {
+  background-color: rgba(255, 255, 255, 0.6); /* branco com transparência */
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+@media (max-width: 360px) {
+  .uk-navbar-container{
+    margin-bottom: 20px !important;
+  }
 }
