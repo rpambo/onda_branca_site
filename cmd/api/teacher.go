@@ -14,6 +14,14 @@ import (
 
 func (app *application) CreateTeacher(w http.ResponseWriter, r *http.Request) {
     // 1. Limitar tamanho do upload (10MB)
+
+    err := os.MkdirAll("uploads", os.ModePerm)
+    if err != nil {
+	    app.logger.Errorw("failed to create uploads directory", "error", err)
+	    app.internalServerError(w, r, err)
+	    return
+    }
+    
     r.Body = http.MaxBytesReader(w, r.Body, 10<<20)
     
     // 2. Parse multipart form

@@ -12,7 +12,7 @@ import (
 )
 
 type application struct {
-	config		*config
+	config		config
 	store		store.Storage
 	logger		*zap.SugaredLogger
 }
@@ -53,6 +53,10 @@ func (app *application) mount() http.Handler {
 
 	r.Route("/v1", func(r chi.Router) {
 		r.Get("/health", app.HealthHandle)
+
+		r.Route("/teacher", func(r chi.Router) {
+			r.Post("/create", app.CreateTeacher)
+		})
 	})
 
 	return r
@@ -63,10 +67,12 @@ func (app *application) run(mux http.Handler) error{
 	srv := http.Server{
 		Addr: app.config.Addr,
 		Handler: mux,
-		ReadTimeout: time.Second * 30,
+		ReadTimeout: time.Second * 10,
 		WriteTimeout: time.Second * 30,
 		IdleTimeout: time.Minute,
 	}
+
+	app.logger.Infow("server has started", "addr", app.config.Addr)
 
 	return srv.ListenAndServe()
 }

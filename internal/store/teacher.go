@@ -13,7 +13,7 @@ type TeacherStore struct {
 }
 
 func (s *TeacherStore) Create(ctx context.Context, teacher *types.Teacher) error {
-	query := `INSERT INTO teachers(first_name, last_name, position, image_url, created_at, updated_at) 
+	query := `INSERT INTO teachers (first_name, last_name, position, image_url, created_at, updated_at) 
 	          VALUES($1, $2, $3, $4, $5, $6)
 	          RETURNING id, first_name, last_name, position, image_url, created_at, updated_at`
 

@@ -18,7 +18,7 @@ type Storage struct {
 	}
 }
 
-func NewStoarge(db *sql.DB) Storage{
+func NewStorage(db *sql.DB) Storage{
 	return Storage{
 		Teacher: &TeacherStore{db},
 	}

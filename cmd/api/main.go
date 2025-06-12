@@ -4,15 +4,24 @@ import (
 	"log"
 	"time"
 
+	"github.com/joho/godotenv"
+	
+	"github.com/rpambo/onda_branca_site/internal/db"
 	"github.com/rpambo/onda_branca_site/internal/env"
 	"github.com/rpambo/onda_branca_site/internal/store"
-	"github.com/rpambo/onda_branca_site/internal/db"
+	"go.uber.org/zap"
 )
 
 func main() {
 	// Load configuration
+
+	err := godotenv.Load()
+	if err != nil {
+    	log.Fatal("Error loading .env file")
+	}
+
 	cnf := config{
-		Addr: env.GetString("ADRR", ":8080"),
+		Addr: env.GetString("ADDR", ":8080"),
 		DB: dbConfig{
 			Addr: env.GetString("ADDR_DB", "postgres://admin:admin@localhost:5432/ondaBranca?sslmode=disable"),
 			MaxOpenConns: env.GetInt("ADDR_MAX_OPEN_CONNS", int(time.Second) * 30),
@@ -21,27 +30,30 @@ func main() {
 		},
 	}
 
+	logger := zap.Must(zap.NewProduction()).Sugar()
+	defer logger.Sync()
+
 	// Initialize database connection
 	db, err := db.OpenDB(cnf.DB.Addr, cnf.DB.MaxOpenConns, cnf.DB.MaxIdleConns, cnf.DB.MaxIdleTime)
 
 	if err != nil {
-		log.Fatalf("failed to initialize database: %v", err)
+		logger.Panic("failed to initialize database: %v", err)
 	}
 	defer db.Close()
+	logger.Info("database connection pool established")
 
-	store := store.NewStoarge(db)
+	store := store.NewStorage(db)
 
 	// Create application
 	app := &application{
-		config: &cnf,
+		config: cnf,
 		store: store,
+		logger: logger,
 	}
 
 	// Setup router
 	mux := app.mount()
 
-	// Start server
-	log.Printf("Starting server on %s", cnf.Addr)
 	if err := app.run(mux); err != nil {
 		log.Fatalf("server error: %v", err)
 	}
