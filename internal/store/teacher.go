@@ -45,3 +45,39 @@ func (s *TeacherStore) Create(ctx context.Context, teacher *types.Teacher) error
 
 	return nil
 }
+
+func (s *TeacherStore) GetAllTeacher (ctx context.Context) ([]types.Teacher,error){
+	query := `SELECT id, first_name, last_name, position, image_url, created_at, updated_at
+			FROM teachers`
+
+	ctx, cancel := context.WithTimeout(ctx, QueryContextTime)
+	defer cancel()
+
+	row, err := s.db.QueryContext(ctx, query)
+
+	if err != nil{
+		return nil, err
+	}
+	defer row.Close()
+
+	var teacher  []types.Teacher
+
+	for row.Next(){
+		var t types.Teacher
+		var imageURL string
+
+		if err := row.Scan(&t.ID, &t.FirstName, &t.LastName, &t.Position, &imageURL, &t.CreatedAt, &t.UpdatedAt); err != nil{
+			return nil, err
+		}
+
+		t.Image = types.Image{ URL: imageURL}
+
+		teacher = append(teacher, t)
+	}
+
+	if err := row.Err(); err != nil{
+		return nil, err
+	}
+
+	return teacher, nil
+}

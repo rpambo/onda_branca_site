@@ -1,137 +1,147 @@
 package main
 
 import (
+	"bytes"
+	"errors"
 	"fmt"
 	"io"
 	"net/http"
-	"os"
 	"path/filepath"
 	"strings"
 	"time"
 
+	"github.com/nedpals/supabase-go"
 	"github.com/rpambo/onda_branca_site/types"
 )
 
+var errSupabaseNotConfigured = errors.New("supabase storage is not configured")
+
+// CreateTeacher handles the creation of a new teacher, including image upload
+// to Supabase Storage and storing metadata in the database.
 func (app *application) CreateTeacher(w http.ResponseWriter, r *http.Request) {
-    // 1. Limitar tamanho do upload (10MB)
+	// Limit request body size to 10MB
+	r.Body = http.MaxBytesReader(w, r.Body, 10<<20)
 
-    err := os.MkdirAll("uploads", os.ModePerm)
-    if err != nil {
-	    app.logger.Errorw("failed to create uploads directory", "error", err)
-	    app.internalServerError(w, r, err)
-	    return
-    }
-    
-    r.Body = http.MaxBytesReader(w, r.Body, 10<<20)
-    
-    // 2. Parse multipart form
-    if err := r.ParseMultipartForm(10 << 20); err != nil {
-        app.badRequestResponse(w, r, fmt.Errorf("tamanho máximo excedido (10MB)"))
-        return
-    }
-
-    // 3. Validar campos simples
-    payload := types.TeacherCreate{
-        FirstName: r.FormValue("first_name"),
-        LastName:  r.FormValue("last_name"),
-        Position:  r.FormValue("position"),
-        Image:     types.Image{},
-    }
-
-    // 4. Processar imagem
-    file, header, err := r.FormFile("image")
-    if err != nil {
-        app.badRequestResponse(w, r, fmt.Errorf("imagem é obrigatória"))
-        return
-    }
-    defer file.Close()
-
-    // 5. Ler primeiros 512 bytes para verificação do tipo
-    buff := make([]byte, 512)
-    if _, err = file.Read(buff); err != nil {
-        app.internalServerError(w, r, err)
-        return
-    }
-
-    // 6. Validar tipo de imagem
-    contentType := http.DetectContentType(buff)
-    if !strings.HasPrefix(contentType, "image/") {
-        app.badRequestResponse(w, r, fmt.Errorf("arquivo deve ser uma imagem válida"))
-        return
-    }
-
-    // 7. Validar extensão
-    ext := filepath.Ext(header.Filename)
-    validExts := map[string]bool{
-        ".jpg":  true,
-        ".jpeg": true,
-        ".png":  true,
-        ".webp": true,
-    }
-    
-	if !validExts[strings.ToLower(ext)] {
-        app.badRequestResponse(w, r, fmt.Errorf("formato de imagem inválido. Use JPG, PNG ou WebP"))
-        return
-    }
-
-    // 8. Ler o arquivo completo
-    if _, err = file.Seek(0, io.SeekStart); err != nil {
-        app.internalServerError(w, r, err)
-        return
-    }
-
-    fileBytes, err := io.ReadAll(file)
-    if err != nil {
-        app.internalServerError(w, r, err)
-        return
-    }
-
-    // 9. Validar tamanho da imagem (máx 5MB)
-    if len(fileBytes) > 5<<20 {
-        app.badRequestResponse(w, r, fmt.Errorf("imagem muito grande (máx 5MB)"))
-        return
-    }
-
-	// 9.5 Gerar nome único e caminho para salvar
-	fileName := fmt.Sprintf("%d%s", time.Now().UnixNano(), ext)
-	uploadPath := "uploads/" + fileName
-
-	// 9.6 Salvar a imagem
-	if err := os.WriteFile(uploadPath, fileBytes, 0644); err != nil {
-		app.internalServerError(w, r, err)
+	// Parse multipart form data
+	if err := r.ParseMultipartForm(10 << 20); err != nil {
+		app.badRequestResponse(w, r, fmt.Errorf("maximum file size exceeded (10MB)"))
 		return
 	}
 
-	// 10. Validar struct completa
-	payload.Image = types.Image{
-		URL: "/" + uploadPath,
+	// Extract and validate form fields
+	payload := types.TeacherCreate{
+		FirstName: r.FormValue("first_name"),
+		LastName:  r.FormValue("last_name"),
+		Position:  r.FormValue("position"),
+		Image:     types.Image{},
 	}
+
+	// Read uploaded image file
+	file, header, err := r.FormFile("image")
+	if err != nil {
+		app.badRequestResponse(w, r, fmt.Errorf("image is required"))
+		return
+	}
+	defer file.Close()
+
+	// Detect MIME type
+	buff := make([]byte, 512)
+	if _, err = file.Read(buff); err != nil {
+		app.internalServerError(w, r, err)
+		return
+	}
+	contentType := http.DetectContentType(buff)
+	if !strings.HasPrefix(contentType, "image/") {
+		app.badRequestResponse(w, r, fmt.Errorf("file must be a valid image"))
+		return
+	}
+
+	// Validate file extension
+	ext := strings.ToLower(filepath.Ext(header.Filename))
+	if !map[string]bool{".jpg": true, ".jpeg": true, ".png": true, ".webp": true}[ext] {
+		app.badRequestResponse(w, r, fmt.Errorf("invalid image format. Use JPG, PNG, or WebP"))
+		return
+	}
+
+	// Read full file content
+	if _, err = file.Seek(0, io.SeekStart); err != nil {
+		app.internalServerError(w, r, err)
+		return
+	}
+	fileBytes, err := io.ReadAll(file)
+	if err != nil {
+		app.internalServerError(w, r, err)
+		return
+	}
+	if len(fileBytes) > 10<<20 {
+		app.badRequestResponse(w, r, fmt.Errorf("image exceeds 10MB"))
+		return
+	}
+
+	// Ensure Supabase client is configured
+	if app.supabase == nil {
+		app.internalServerError(w, r, errSupabaseNotConfigured)
+		return
+	}
+
+	// Generate unique filename and upload image to Supabase Storage
+	fileName := fmt.Sprintf("teachers/%d%s", time.Now().UnixNano(), ext)
+	uploadResp := app.supabase.Storage.
+		From("teacherstest").
+		Upload(fileName, bytes.NewBuffer(fileBytes), &supabase.FileUploadOptions{Upsert: false})
+
+	if uploadResp.Key == "" {
+		app.internalServerError(w, r, fmt.Errorf("image upload failed"))
+		return
+	}
+
+	// Construct public image URL
+	imageURL := fmt.Sprintf("%s/storage/v1/object/public/%s", app.config.SupabaseURL, uploadResp.Key)
+	payload.Image = types.Image{URL: imageURL}
+
+	// Validate final payload structure
 	if err := Validate.Struct(payload); err != nil {
-		// Remove a imagem, se já tiver sido salva
-		_ = os.Remove(uploadPath)
+		_ = app.supabase.Storage.From("teacherstest").Remove([]string{uploadResp.Key})
 		app.badRequestResponse(w, r, err)
 		return
 	}
 
-	// 11. Criar no banco
-	ctx := r.Context()
+	// Prepare teacher record for database
+	now := time.Now().Format(time.RFC3339)
 	teacher := &types.Teacher{
 		FirstName: payload.FirstName,
 		LastName:  payload.LastName,
 		Position:  payload.Position,
 		Image:     payload.Image,
-		CreatedAt: time.Now().Format(time.RFC3339),
-		UpdatedAt: time.Now().Format(time.RFC3339),
+		CreatedAt: now,
+		UpdatedAt: now,
 	}
-	
-	if err := app.store.Teacher.Create(ctx, teacher); err != nil {
-		_ = os.Remove(uploadPath) // rollback se der erro
+
+	// Insert teacher into the database
+	if err := app.store.Teacher.Create(r.Context(), teacher); err != nil {
+		_ = app.supabase.Storage.From("teacherstest").Remove([]string{uploadResp.Key})
 		app.internalServerError(w, r, err)
 		return
 	}
 
+	// Respond with JSON
 	if err := app.jsonResponse(w, http.StatusCreated, teacher); err != nil {
 		app.internalServerError(w, r, err)
-		return 
 	}
+}
+
+func (app *application) GetAllTeacherHandler(w http.ResponseWriter, r *http.Request){
+       ctx := r.Context()
+
+       teacher, err := app.store.Teacher.GetAllTeacher(ctx)
+
+       if err != nil {
+        app.internalServerError(w, r, err)
+        return
+       }
+
+       if err := app.jsonResponse(w, http.StatusOK, teacher); err != nil {
+        app.internalServerError(w, r, err)
+        return
+       }
 }

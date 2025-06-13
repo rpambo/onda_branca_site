@@ -7,6 +7,7 @@ import (
 	"github.com/go-chi/chi/v5"
 	"github.com/go-chi/chi/v5/middleware"
 	"github.com/go-chi/cors"
+	"github.com/nedpals/supabase-go"
 	"github.com/rpambo/onda_branca_site/internal/store"
 	"go.uber.org/zap"
 )
@@ -15,11 +16,14 @@ type application struct {
 	config		config
 	store		store.Storage
 	logger		*zap.SugaredLogger
+	supabase	*supabase.Client
 }
 
 type config struct {
 	Addr		string
 	DB			dbConfig
+	SupabaseURL string
+    SupabaseKey string
 }
 
 type dbConfig struct {
@@ -56,6 +60,7 @@ func (app *application) mount() http.Handler {
 
 		r.Route("/teacher", func(r chi.Router) {
 			r.Post("/create", app.CreateTeacher)
+			r.Get("/get_all_teachers", app.GetAllTeacherHandler)
 		})
 	})
 

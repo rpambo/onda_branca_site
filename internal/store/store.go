@@ -15,6 +15,7 @@ var (
 type Storage struct {
 	Teacher interface {
 		Create(context.Context, *types.Teacher) error
+		GetAllTeacher(context.Context) ([]types.Teacher, error)
 	}
 }
 

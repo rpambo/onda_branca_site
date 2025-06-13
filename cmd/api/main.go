@@ -5,7 +5,8 @@ import (
 	"time"
 
 	"github.com/joho/godotenv"
-	
+	"github.com/nedpals/supabase-go"
+
 	"github.com/rpambo/onda_branca_site/internal/db"
 	"github.com/rpambo/onda_branca_site/internal/env"
 	"github.com/rpambo/onda_branca_site/internal/store"
@@ -28,6 +29,8 @@ func main() {
 			MaxIdleConns: env.GetInt("ADDR_MAX_IDDLE_CONNS", int(time.Second) * 10),
 			MaxIdleTime: env.GetString("ADDR_MAX_IDDLE_TIME", "15m"),
 		},
+		SupabaseURL: env.GetString("SUPABASE_URL", "https://fwvdfyfqyvyguejcowza.supabase.co"),
+		SupabaseKey: env.GetString("SUPABASE_KEY", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZ3dmRmeWZxeXZ5Z3VlamNvd3phIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDk3MzQ5ODEsImV4cCI6MjA2NTMxMDk4MX0.MPUPsSM0N6OQHOMOfeAns6dCbO2vhquUreJA9Wnw2NM"),
 	}
 
 	logger := zap.Must(zap.NewProduction()).Sugar()
@@ -41,7 +44,9 @@ func main() {
 	}
 	defer db.Close()
 	logger.Info("database connection pool established")
-
+	
+	// Initialize Supabase client
+	supabaseClient := supabase.CreateClient(cnf.SupabaseURL, cnf.SupabaseKey)
 	store := store.NewStorage(db)
 
 	// Create application
@@ -49,6 +54,7 @@ func main() {
 		config: cnf,
 		store: store,
 		logger: logger,
+		supabase: supabaseClient,
 	}
 
 	// Setup router
