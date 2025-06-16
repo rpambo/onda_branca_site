@@ -62,6 +62,9 @@ func (app *application) mount() http.Handler {
 			r.Post("/create", app.CreateTeacher)
 			r.Get("/get_all_teachers", app.GetAllTeacherHandler)
 		})
+		r.Route("/services", func(r chi.Router) {
+			r.Post("/create", app.ServicesHandler)
+		})
 	})
 
 	return r

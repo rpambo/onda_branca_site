@@ -7,5 +7,5 @@ import { Component } from '@angular/core';
   styleUrl: './services.css'
 })
 export class Services {
-
+  curso = "Treinamento p7 "
 }

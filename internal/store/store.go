@@ -17,10 +17,14 @@ type Storage struct {
 		Create(context.Context, *types.Teacher) error
 		GetAllTeacher(context.Context) ([]types.Teacher, error)
 	}
+	Services interface {
+		Create(context.Context, *types.Services) error
+	}
 }
 
 func NewStorage(db *sql.DB) Storage{
 	return Storage{
 		Teacher: &TeacherStore{db},
+		Services: &ServicesStore{db},
 	}
 }

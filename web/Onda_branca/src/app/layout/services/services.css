@@ -1,33 +1,20 @@
-@media (max-width: 768px) {
-  .uk-slider-items {
-    padding-left: 1rem;
-    padding-right: 1rem;
-  }
-
-  .title{
-    margin-top: 10px !important;
-  }
-
-  .uk-slider-items > div {
-    text-align: center;
-    display: block;
-  }
-
-  .uk-slider-items img {
-    margin: 0 auto;
-  }
-
-  .destaque{
-    margin-bottom: 20px;
-  }
-  a{
-    display: block;
-    font-size: 20px !important;
-  }
-  img{
+.texto-com-reticencias {
+  display: -webkit-box;
+  -webkit-line-clamp: 2; /* Limita a 2 linhas */
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  
+  /* Adicione estas propriedades */
+  word-break: break-word; /* Quebra palavras longas */
+  max-width: 100%; /* Garante que respeite o container pai */
+  line-height: 1.2; /* Ajuste o espaçamento entre linhas */
+  font-size: 18px;
+  font-weight: 600;
+}
+@media (max-width: 760px) {
+  .uk-grid > div {
+    padding: 10px;
     width: 100%;
-  }
-  .title{
-    font-size: 23px !important;
   }
 }

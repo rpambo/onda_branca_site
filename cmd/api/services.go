@@ -2,7 +2,6 @@ package main
 
 import (
 	"bytes"
-	"errors"
 	"fmt"
 	"io"
 	"net/http"
@@ -14,11 +13,7 @@ import (
 	"github.com/rpambo/onda_branca_site/types"
 )
 
-var errSupabaseNotConfigured = errors.New("supabase storage is not configured")
-
-// CreateTeacher handles the creation of a new teacher, including image upload
-// to Supabase Storage and storing metadata in the database.
-func (app *application) CreateTeacher(w http.ResponseWriter, r *http.Request) {
+func (app *application) ServicesHandler(w http.ResponseWriter, r *http.Request){
 	// Limit request body size to 10MB
 	r.Body = http.MaxBytesReader(w, r.Body, 10<<20)
 
@@ -29,12 +24,25 @@ func (app *application) CreateTeacher(w http.ResponseWriter, r *http.Request) {
 	}
 
 	// Extract and validate form fields
-	payload := types.TeacherCreate{
-		FirstName: r.FormValue("first_name"),
-		LastName:  r.FormValue("last_name"),
-		Position:  r.FormValue("position"),
+	payload := types.CreateServices{
+		Type: r.FormValue("type"),
+		Name:  r.FormValue("name"),
 		Image:     types.Image{},
 	}
+
+	// Apenas preencher modules se existir no form
+    if modulesStr := r.FormValue("modules"); modulesStr != "" {
+        payload.Modules = strings.Split(modulesStr, ",")
+    }
+
+    // Campos opcionais de data
+    if start := r.FormValue("start"); start != "" {
+        payload.Start = start
+    }
+
+    if end := r.FormValue("end"); end != "" {
+        payload.End = end
+    }
 
 	// Read uploaded image file
 	file, header, err := r.FormFile("image")
@@ -69,6 +77,7 @@ func (app *application) CreateTeacher(w http.ResponseWriter, r *http.Request) {
 		app.internalServerError(w, r, err)
 		return
 	}
+
 	fileBytes, err := io.ReadAll(file)
 	if err != nil {
 		app.internalServerError(w, r, err)
@@ -109,40 +118,26 @@ func (app *application) CreateTeacher(w http.ResponseWriter, r *http.Request) {
 
 	// Prepare teacher record for database
 	now := time.Now().Format(time.RFC3339)
-	teacher := &types.Teacher{
-		FirstName: payload.FirstName,
-		LastName:  payload.LastName,
-		Position:  payload.Position,
+	service := &types.Services{
+		Type: payload.Type,
+		Name:  payload.Name,
 		Image:     payload.Image,
+		Modules: payload.Modules,
+		Start: payload.Start,
+		End: payload.End,
 		CreatedAt: now,
 		UpdatedAt: now,
 	}
 
 	// Insert teacher into the database
-	if err := app.store.Teacher.Create(r.Context(), teacher); err != nil {
+	if err := app.store.Services.Create(r.Context(), service); err != nil {
 		_ = app.supabase.Storage.From("teacherstest").Remove([]string{uploadResp.Key})
 		app.internalServerError(w, r, err)
 		return
 	}
 
 	// Respond with JSON
-	if err := app.jsonResponse(w, http.StatusCreated, teacher); err != nil {
+	if err := app.jsonResponse(w, http.StatusCreated, service); err != nil {
 		app.internalServerError(w, r, err)
 	}
-}
-
-func (app *application) GetAllTeacherHandler(w http.ResponseWriter, r *http.Request){
-       ctx := r.Context()
-
-       teacher, err := app.store.Teacher.GetAllTeacher(ctx)
-
-       if err != nil {
-        app.internalServerError(w, r, err)
-        return
-       }
-
-       if err := app.jsonResponse(w, http.StatusOK, teacher); err != nil {
-        app.internalServerError(w, r, err)
-        return
-       }
 }
