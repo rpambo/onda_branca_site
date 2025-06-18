@@ -2,6 +2,7 @@ package main
 
 import (
 	"bytes"
+	"encoding/json"
 	"fmt"
 	"io"
 	"net/http"
@@ -30,10 +31,13 @@ func (app *application) ServicesHandler(w http.ResponseWriter, r *http.Request){
 		Image:     types.Image{},
 	}
 
-	// Apenas preencher modules se existir no form
-    if modulesStr := r.FormValue("modules"); modulesStr != "" {
-        payload.Modules = strings.Split(modulesStr, ",")
-    }
+	modulesRaw := r.FormValue("modules")
+	var modules []string
+	if err := json.Unmarshal([]byte(modulesRaw), &modules); err != nil {
+		app.badRequestResponse(w, r, fmt.Errorf("modules must be a valid JSON array"))
+		return
+	}
+	payload.Modules = modules
 
     // Campos opcionais de data
     if start := r.FormValue("start"); start != "" {
@@ -139,5 +143,22 @@ func (app *application) ServicesHandler(w http.ResponseWriter, r *http.Request){
 	// Respond with JSON
 	if err := app.jsonResponse(w, http.StatusCreated, service); err != nil {
 		app.internalServerError(w, r, err)
+	}
+}
+
+func (app *application) GetAllServicesHandler(w http.ResponseWriter, r *http.Request){
+
+	ctx := r.Context()
+
+	services, err := app.store.Services.GetAllServices(ctx)
+	
+	if  err != nil {
+		app.internalServerError(w, r, err)
+		return
+	}
+
+	if err := app.jsonResponse(w, http.StatusOK, services); err != nil{
+		app.internalServerError(w, r, err)
+		return
 	}
 }

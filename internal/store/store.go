@@ -19,6 +19,7 @@ type Storage struct {
 	}
 	Services interface {
 		Create(context.Context, *types.Services) error
+		GetAllServices(context.Context) ([]types.Services, error)
 	}
 }
 

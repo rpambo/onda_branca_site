@@ -52,3 +52,34 @@ func (s *ServicesStore) Create(ctx context.Context, service *types.Services) err
 
     return nil
 }
+
+
+func (s *ServicesStore) GetAllServices(ctx context.Context) ([]types.Services, error){
+    query := `SELECT id, name, type, modules, image_url, start_date, end_date, created_at, updated_at FROM services`
+
+    ctx, cancel := context.WithTimeout(ctx, QueryContextTime)
+    defer cancel()
+
+    row, err := s.db.QueryContext(ctx, query)
+
+    if err != nil{
+        return nil, err
+    }
+    defer row.Close()
+
+    serveices := []types.Services{}
+
+    for row.Next(){
+        var t types.Services
+        var image types.Image
+
+        if err := row.Scan(&t.ID, &t.Name, &t.Type, pq.Array(&t.Modules), &image.URL, &t.Start, &t.End, &t.CreatedAt, &t.UpdatedAt); err != nil {
+            return nil, err
+        } 
+
+        t.Image.URL = image.URL
+        serveices = append(serveices, t)
+    }
+
+    return serveices, nil
+}

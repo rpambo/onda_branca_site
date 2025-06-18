@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Teachers } from '../../Teachers';
+import { Teachers } from '../../interfaces';
 import { Teacher } from '../../services/teacher';
 import { CommonModule } from '@angular/common';
 

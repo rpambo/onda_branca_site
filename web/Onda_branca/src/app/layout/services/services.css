@@ -9,12 +9,30 @@
   word-break: break-word; /* Quebra palavras longas */
   max-width: 100%; /* Garante que respeite o container pai */
   line-height: 1.2; /* Ajuste o espaçamento entre linhas */
-  font-size: 18px;
+  font-size: 16px;
   font-weight: 600;
 }
+
+.uk-slidenav-previous,
+.uk-slidenav-next {
+  z-index: 1000;
+  color: #072132 !important; /* ou #fff para fundo escuro */
+}
+
+.uk-position-center-left-out, .uk-position-center-right-out {
+    color: #9A74A1 !important;
+}
+
 @media (max-width: 760px) {
   .uk-grid > div {
     padding: 10px;
     width: 100%;
+  }
+
+  .type{
+    font-size: 1rem !important;
+  }
+  .texto-com-reticencias{
+    font-size: 1.5rem !important;
   }
 }

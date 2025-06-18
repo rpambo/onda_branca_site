@@ -5,94 +5,33 @@
     </div>
 </div>
 
-<div class="uk-container uk-margin-large-bottom">
+<div class="uk-container ">
     <div uk-slider="autoplay: true" class=" uk-position-relative uk-visible-toggle uk-darklight" tabindex="-1">
         <div class="uk-slider-container uk-padding-medium">
-            <div class="uk-slider-items uk-child-width-1-5@l uk-child-width-1-3@s ">
-                <div>
+            <div class="uk-slider-items uk-child-width-1-5@l uk-grid-match uk-child-width-1-3@s ">
+                <div *ngFor="let service of serv">
                     <div class="uk-child-width-1-2@l uk-flex uk-grid-match uk-grid-small uk-padding-small" style="border: solid rgba(148, 148, 148, 0.388) 1px; border-radius: 20px; padding-left: 0; padding-right: 0; margin-right: 20px !important;">
                         <div>
-                            <img src="imagens/p7.png" alt="p7" style="border-radius: 10px;">
+                            <img [src]="service.image.url" [alt]="service.name" style="border-radius: 10px;">
                         </div>
                         <div>
                             <a href="" style="color: #094268;">
-                                <span style="font-size: 12px; font-weight: 400;">Treinamento</span><br>
-                                <span class="texto-com-reticencias">{{ curso }}</span>
+                                <span style="font-size: 12px; font-weight: 400;" class="type">{{ service.type }}</span><br>
+                                <span class="texto-com-reticencias">{{ service.name }}</span>
                             </a>
                         </div>
                     </div>
                 </div>
-                <div>
-                    <div class="uk-child-width-1-2@l uk-flex uk-grid-match uk-grid-small uk-padding-small" style="border: solid rgba(148, 148, 148, 0.388) 1px; border-radius: 20px; padding-left: 0; padding-right: 0; margin-right: 20px !important;">
-                        <div>
-                            <img src="imagens/p7.png" alt="p7" style="border-radius: 10px;">
-                        </div>
-                        <div>
-                            <a href="" style="color: #094268;">
-                                <span style="font-size: 12px; font-weight: 400;">Treinamento</span><br>
-                                <span class="texto-com-reticencias">{{ curso }}</span>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div>
-                    <div class="uk-child-width-1-2@l uk-flex uk-grid-match uk-grid-small uk-padding-small" style="border: solid rgba(148, 148, 148, 0.388) 1px; border-radius: 20px; padding-left: 0; padding-right: 0; margin-right: 20px !important;">
-                        <div>
-                            <img src="imagens/p7.png" alt="p7" style="border-radius: 10px;">
-                        </div>
-                        <div>
-                            <a href="" style="color: #094268;">
-                                <span style="font-size: 12px; font-weight: 400;">Treinamento</span><br>
-                                <span class="texto-com-reticencias">{{ curso }}</span>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div>
-                    <div class="uk-child-width-1-2@l uk-flex uk-grid-match uk-grid-small uk-padding-small" style="border: solid rgba(148, 148, 148, 0.388) 1px; border-radius: 20px; padding-left: 0; padding-right: 0; margin-right: 20px !important;">
-                        <div>
-                            <img src="imagens/p7.png" alt="p7" style="border-radius: 10px;">
-                        </div>
-                        <div>
-                            <a href="" style="color: #094268;">
-                                <span style="font-size: 12px; font-weight: 400;">Treinamento</span><br>
-                                <span class="texto-com-reticencias">{{ curso }}</span>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div>
-                    <div class="uk-child-width-1-2@l uk-flex uk-grid-match uk-grid-small uk-padding-small" style="border: solid rgba(148, 148, 148, 0.388) 1px; border-radius: 20px; padding-left: 0; padding-right: 0; margin-right: 20px !important;">
-                        <div>
-                            <img src="imagens/p7.png" alt="p7" style="border-radius: 10px;">
-                        </div>
-                        <div>
-                            <a href="" style="color: #094268;">
-                                <span style="font-size: 12px; font-weight: 400;">Treinamento</span><br>
-                                <span class="texto-com-reticencias">{{ curso }}</span>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div>
-                    <div class="uk-child-width-1-2@l uk-flex uk-grid-match uk-grid-small uk-padding-small" style="border: solid rgba(148, 148, 148, 0.388) 1px; border-radius: 20px; padding-left: 0; padding-right: 0; margin-right: 20px !important;">
-                        <div>
-                            <img src="imagens/p7.png" alt="p7" style="border-radius: 10px;">
-                        </div>
-                        <div>
-                            <a href="" style="columns: #094268;">
-                                <span style="font-size: 12px; font-weight: 400;">Treinamento</span><br>
-                                <span class="texto-com-reticencias">{{ curso }}</span>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
             </div>
-            <div >
-                <a class="uk-position-center-left-out uk-position-small" href uk-slidenav-previous uk-slider-item="previous"></a>
-                <a class="uk-position-center-right-out uk-position-small" style="color: #072132;" href uk-slidenav-next uk-slider-item="next"></a>
-            </div>
+            <div class="uk-visible@m">
+                        <a class="uk-position-center-left-out uk-position-small" href uk-slidenav-previous uk-slider-item="previous"></a>
+                        <a class="uk-position-center-right-out uk-position-small" style="color: #072132;" href uk-slidenav-next uk-slider-item="next"></a>
+                    </div>
+                    
+                    <div class="uk-hidden@m">
+                        <a class="uk-position-center-left uk-position-small" href uk-slidenav-previous uk-slider-item="previous"></a>
+                        <a class="uk-position-center-right uk-position-small" style="color: #072132;" href uk-slidenav-next uk-slider-item="next"></a>
+                    </div>
         </div>
     </div>
 </div>

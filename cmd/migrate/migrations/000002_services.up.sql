@@ -3,7 +3,7 @@ CREATE TABLE services (
     type VARCHAR(100) NOT NULL,
     name VARCHAR(100) NOT NULL,
     image_url TEXT NOT NULL,
-    modules JSONB,  -- Stores structured module data
+    modules TEXT NOT NULL DEFAULT '{}',
     start_date TIMESTAMP,
     end_date TIMESTAMP,
     created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
