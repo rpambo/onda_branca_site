@@ -65,6 +65,8 @@ func (app *application) mount() http.Handler {
 		r.Route("/services", func(r chi.Router) {
 			r.Post("/create", app.ServicesHandler)
 			r.Get("/get_all_services", app.GetAllServicesHandler)
+			r.Put("/update_services/{id}", app.PartialUpdate)
+			r.Delete("/delete_services/{id}", app.DeleteServiceHandler)
 		})
 	})
 

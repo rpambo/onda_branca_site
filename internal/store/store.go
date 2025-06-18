@@ -20,6 +20,9 @@ type Storage struct {
 	Services interface {
 		Create(context.Context, *types.Services) error
 		GetAllServices(context.Context) ([]types.Services, error)
+		PartialUpdate(context.Context, *types.Services) error
+		GetServiceById(context.Context, int64) (*types.Services, error)
+		DeleteServices(context.Context, int64) error
 	}
 }
 
