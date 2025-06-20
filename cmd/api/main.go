@@ -20,7 +20,7 @@ func main() {
 	
 
 	cnf := config{
-		Addr: env.GetString("ADDR", ":8080"),
+		Addr: env.GetString("ADDR", "0.0.0.0:8080"),
 		DB: dbConfig{
 			Addr: env.GetString("DATABASE_URL", ""),
 			MaxOpenConns: env.GetInt("ADDR_MAX_OPEN_CONNS", int(time.Second) * 30),
