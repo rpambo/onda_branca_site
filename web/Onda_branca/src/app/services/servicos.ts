@@ -8,7 +8,7 @@ import { Service } from '../interfaces';
   providedIn: 'root'
 })
 export class Servicos {
-  private urls = "http://localhost:8080/v1/services/get_all_services"
+  private urls = "https://ondabrancasite-env.up.railway.app/v1/services/get_all_services"
 
   constructor(private http: HttpClient) { }
 
