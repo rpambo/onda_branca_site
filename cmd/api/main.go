@@ -15,14 +15,13 @@ import (
 
 func main() {
 	// Load configuration
-
 	_ = godotenv.Load()
 	
 
 	cnf := config{
 		Addr: env.GetString("ADDR", "0.0.0.0:8080"),
 		DB: dbConfig{
-			Addr: env.GetString("DATABASE_URL", ""),
+			Addr: env.GetString("DATABASE_URL", "postgres://admin:admin@localhost:5432/ondaBranca?sslmode=disable"),
 			MaxOpenConns: env.GetInt("ADDR_MAX_OPEN_CONNS", int(time.Second) * 30),
 			MaxIdleConns: env.GetInt("ADDR_MAX_IDDLE_CONNS", int(time.Second) * 10),
 			MaxIdleTime: env.GetString("ADDR_MAX_IDDLE_TIME", "15m"),

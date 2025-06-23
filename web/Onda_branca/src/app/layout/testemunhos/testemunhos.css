@@ -1,0 +1,8 @@
+@media (max-width: 760px) {
+    .title {
+        font-size: 23px !important;
+    }
+    p{
+        text-align: justify;
+    }
+}

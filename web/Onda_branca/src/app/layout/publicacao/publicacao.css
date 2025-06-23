@@ -24,4 +24,13 @@
   button{
     font-size: 0.53rem !important;
   }
+  .uk-button-eventos{
+    font-size: 0.50rem !important;
+  }
+  .title {
+    font-size: 23px !important;
+  }
+  p{
+    text-align: justify !important;
+  }
 }
