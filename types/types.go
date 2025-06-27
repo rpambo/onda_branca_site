@@ -34,10 +34,27 @@ type Services struct {
 }
 
 type CreateServices struct{
-	Type        string    `json:"type" validate:"required,min=2,max=100"`
-	Name        string    `json:"name" validate:"required,min=2,max=100"`
-	Image       Image     `json:"image"`
+	Type        string    	`json:"type" validate:"required,min=2,max=100"`
+	Name        string    	`json:"name" validate:"required,min=2,max=100"`
+	Image       Image     	`json:"image"`
 	Modules		[]string	`json:"modules,omitempty"`  // omitempty para omitir se vazio
     Start		string		`json:"start,omitempty"`    // omitempty
     End			string		`json:"end,omitempty"`      // omitempty
+}
+
+type Publication struct {
+	ID         	int64     	`json:"id"`
+	Title      	string    	`json:"title" validate:"required,min=2,max=100"`
+	Image      	Image     	`json:"image" validate:"required"`
+	Category  	string    	`json:"category" validate:"required,min=2,max=100"`
+	Content    	string    	`json:"content" validate:"required"`
+	CreatedAt  	string 		`json:"created_at"`
+	UpdatedAt  	string 		`json:"updated_at"`
+}
+
+type CretePublication struct{
+	Title      	string    	`json:"title" validate:"required,min=2,max=100"`
+	Image      	Image     	`json:"image" validate:"required"`
+	Category  	string    	`json:"category" validate:"required,min=2,max=100"`
+	Content    	string    	`json:"content" validate:"required"`
 }

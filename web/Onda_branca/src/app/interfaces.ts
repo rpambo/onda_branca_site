@@ -23,3 +23,14 @@ export interface Service {
   created_at: string;
   updated_at: string;
 }
+
+export interface pub{
+  title: string;
+  image: {
+    url: string;
+  };
+  category: string;
+  content: string;
+  created_at: string;
+  updated_at: string;
+}

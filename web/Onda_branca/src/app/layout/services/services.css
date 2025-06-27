@@ -19,6 +19,12 @@
   color: #072132 !important; /* ou #fff para fundo escuro */
 }
 
+img {
+  width: 100% !important;
+  height: auto !important;
+  object-fit: cover !important; /* ou contain, dependendo do efeito desejado */
+}
+
 .uk-position-center-left-out, .uk-position-center-right-out {
     color: #9A74A1 !important;
 }
@@ -41,5 +47,11 @@
   }
   p{
     text-align: justify;
+  }
+
+  img {
+    width: 100% !important;
+    height: auto !important;
+    aspect-ratio: 1.75 !important; /* igual à proporção original */
   }
 }

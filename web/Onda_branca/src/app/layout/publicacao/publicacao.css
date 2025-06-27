@@ -18,6 +18,11 @@
   font-weight: 600;
 }
 
+/* Botões principais */
+.uk-button {
+  color: #FFFFFF !important; /* texto branco */
+  background-color: #0067A3 !important; /* azul mais escuro para contraste */
+}
 
 
 @media (max-width: 760px) {

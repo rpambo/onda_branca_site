@@ -2,15 +2,15 @@
     <!--Sobre nos-->
     <div class="uk-child-width-1-2@l uk-grid uk-grid-match">
         <div>
-            <img src="imagens/onda_branca_about.webp" alt="about">
+            <img width="100%" height="auto" src="imagens/onda_branca_about.webp" alt="about">
         </div>
         <div>
-            <span class="uk-margin-large-top uk-margin-remove-bottom@l" style="font-size: 16px;" >Sobre nós</span>
-            <h1 style="font-size: 30px; font-weight: bold; color: #00A6FB; margin-bottom: -5px !important;" class="uk-margin-remove-top title"> Onda Branca</h1>
-            <p style="font-size: 16px; margin-bottom: 0; color: #094268;" class="uk-margin-remove@l">Acreditamos que saúde mental e produtividade andam de mãos dadas.</p>
-            <p style="font-size: 16px; color: #094268;" class="uk-margin-remove@l">Nossa missão é criar locais de trabalho mais saudáveis ​​e produtivos, fornecendo recursos e treinamentos acessíveis e baseados em evidências.</p>
+            <span class="uk-margin-large-top uk-margin-remove-bottom@l" style="font-size: 16px; color: #00a7fb;" >Sobre nós</span>
+            <h1 style="font-size: 30px; font-weight: bold; color: #094268; margin-bottom: -5px !important;" class="uk-margin-remove-top title"> Onda Branca</h1>
+            <p style="font-size: 16px; margin-bottom: 0; color: #0067A3;" class="uk-margin-remove@l">Acreditamos que saúde mental e produtividade andam de mãos dadas.</p>
+            <p style="font-size: 16px; color: #0067A3;" class="uk-margin-remove@l">Nossa missão é criar locais de trabalho mais saudáveis ​​e produtivos, fornecendo recursos e treinamentos acessíveis e baseados em evidências.</p>
             <div>
-                <button class="uk-button uk-button-small" style="font-size: 12.8px; padding: 8px 24px; border-radius: 20px; background-color: #00A6FB; color: #EBE3EC;">Saiba mais <span class="uk-icon" style="color: #EBE3EC;" uk-icon="icon: arrow-right"></span> </button>
+                <button class="uk-button uk-button-small" style="font-size: 12.8px; padding: 8px 24px; border-radius: 20px; background-color: #0067A3; color: #EBE3EC;">Saiba mais <span class="uk-icon" style="color: #EBE3EC;" uk-icon="icon: arrow-right"></span> </button>
             </div>
         </div>
     </div>
@@ -19,8 +19,8 @@
     <div class="uk-container uk-margin-large-top uk-margin-large-bottom">
         <div class="uk-child-width-1-2@l uk-grid">
             <div class="uk-width-auto@l" style="width: 420px;">
-                <h2 style="font-size: 30px; color: #00A6FB; font-weight: bold; margin: 0; max-width: 350px;" class="title uk-margin-small-bottom">Conheça Nossa Equipe de Formadores</h2>
-                <p style="font-size: 16px; color: #094268; max-width: 350px;" class="destaque">Conheça os profissionais por trás das nossas formações.</p>
+                <h2 style="font-size: 30px; color: #094268; font-weight: bold; margin: 0; max-width: 350px;" class="title uk-margin-small-bottom">Conheça Nossa Equipe de Formadores</h2>
+                <p style="font-size: 16px; color: #0067A3; max-width: 350px;" class="destaque">Conheça os profissionais por trás das nossas formações.</p>
             </div>
             <div class="uk-width-expand@l">
                 <div uk-slider="autoplay: true" class=" uk-position-relative uk-visible-toggle uk-darklight" tabindex="-1">
@@ -29,7 +29,7 @@
                         <div *ngFor="let teacher of teachers">
                             <div class="uk-child-width-1-2@l uk-flex uk-grid-match" style=" border-radius: 20px; box-sizing: border-box; overflow: hidden; border: solid #c7c7c7 1px;">
                                 <div>
-                                    <img [src]="teacher.image.url"  alt="Teacher photo">
+                                    <img width="100%" height="auto" [src]="teacher.image.url"  alt="Teacher photo">
                                 </div>
                                 <div>
                                     <div class="uk-card uk-padding-small">

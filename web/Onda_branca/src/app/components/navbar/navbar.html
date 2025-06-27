@@ -3,10 +3,14 @@
     <nav class="uk-navbar">
     <div class="uk-navbar-left">
       <a href="/" class="uk-navbar-item uk-logo">
-        <img width="120px" src="imagens/logo.webp" alt="logotipo onda branca">
+        <img width="120px" src="imagens/logo.png" alt="logotipo onda branca">
       </a>
     </div>
-    <div class="uk-navbar-center uk-visible@m">
+    <div class="uk-navbar-center uk-visible@m"  >
+      <form  [formGroup]="form" (ngSubmit)="onSearch()" class="uk-search uk-search-navbar" style="width: 150px;">
+        <span uk-search-icon style="color: white; font-weight: bolder;"></span>
+        <input formControlName="search"  class="uk-search-input" name="q" style="border-radius: 20px; background-color: #0067A3; color: white; border: solid 1px #0067A3; font-size: 12.8px;" type="text" placeholder="pesquisar...">
+      </form>
       <ul class="uk-navbar-nav">
         <li><a href="/">Home</a></li>
         <li><a href="">Sobre nós</a></li>
@@ -17,8 +21,9 @@
       </ul>
     </div>
     <div class="uk-navbar-right">
-      <a href="#off-canvas" class="uk-icon-button uk-hidden@m" style="background-color: #00A6FB; color: white;" uk-toggle uk-icon="icon: menu"></a>
-      <button class="uk-button uk-button-small uk-visible@m" style="border-radius: 20px; background-color: #00A6FB; color: #EBE3EC; font-size: 14px; padding: 8 26px;">Contactar</button>
+      <a uk-toggle class="uk-hidden@m uk-icon-button" style="background-color: #00a7fb; color: white;" href="#modal-full" uk-search-icon uk-toggle></a>
+      <a href="#off-canvas" class="uk-icon-button uk-hidden@m" style="background-color: #0067A3; color: white;" uk-toggle uk-icon="icon: menu"></a>
+      <button class="uk-button uk-button-small uk-visible@m" style="border-radius: 20px; background-color: #0067A3; color: #EBE3EC; font-size: 12.8px; padding: 8px 24px;">Contactar</button>
     </div>
   </nav>
   </div>
@@ -39,4 +44,13 @@
         <button class="uk-button uk-button-small" style="border-radius: 20px; background-color: #00A6FB; color: #EBE3EC; font-size: 10px; padding: 8px 26px;">Contactar</button>
     </ul>
   </div>
+</div>
+
+<div id="modal-full" class="uk-modal-full uk-modal" uk-modal>
+    <div class="uk-modal-dialog uk-flex uk-flex-center uk-flex-middle" style="background-color: #0067a386;" uk-height-viewport>
+        <button class="uk-modal-close-full" type="button" uk-close></button>
+        <form class="uk-search uk-search-medium">
+            <input style="border-radius: 20px; background-color: white;" class="uk-search-input uk-text-center" type="search" placeholder="pesquisar..." aria-label="Search" autofocus>
+        </form>
+    </div>
 </div>

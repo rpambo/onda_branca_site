@@ -68,6 +68,11 @@ func (app *application) mount() http.Handler {
 			r.Put("/update_services/{id}", app.PartialUpdate)
 			r.Delete("/delete_services/{id}", app.DeleteServiceHandler)
 		})
+		r.Route("/publicacao", func(r chi.Router) {
+			r.Post("/create", app.CreatePublication)
+			r.Get("/get_all_pub", app.getAllPub)
+			r.Get("/get_by_search/{q}", app.GetbySearch)
+		})
 	})
 
 	return r

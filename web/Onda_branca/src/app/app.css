@@ -1,0 +1,6 @@
+body {
+  font-size: 14px !important; /* base segura para leitura em mobile */
+}
+p, span {
+  font-size: 12px !important;
+}
