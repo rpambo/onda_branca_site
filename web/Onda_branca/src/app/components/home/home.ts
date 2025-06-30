@@ -6,10 +6,11 @@ import { Services } from "../../layout/services/services";
 import { Testemunhos } from "../../layout/testemunhos/testemunhos";
 import { Publicacao } from "../../layout/publicacao/publicacao";
 import { Meta, Title } from '@angular/platform-browser';
+import { Footer } from "../../layout/footer/footer";
 
 @Component({
   selector: 'app-home',
-  imports: [Navbar, Slides, About, Services, Testemunhos, Publicacao],
+  imports: [Navbar, Slides, About, Services, Testemunhos, Publicacao, Footer],
   templateUrl: './home.html',
   styleUrl: './home.css'
 })
@@ -28,7 +29,7 @@ export class Home {
     // Meta Open Graph (para redes sociais)
     this.meta.updateTag({ property: 'og:title', content: 'Onda Branca - Saúde Mental e Produtividade' });
     this.meta.updateTag({ property: 'og:description', content: 'Junta-te à comunidade Onda Branca e explora conteúdos sobre bem-estar e produtividade.' });
-    this.meta.updateTag({ property: 'og:image', content: 'https://ondabranca.com/assets/og-image.png' }); // usa uma URL válida
+    this.meta.updateTag({ property: 'og:image', content: 'https://ondabranca.com/imagens/logo.png' }); // usa uma URL válida
     this.meta.updateTag({ property: 'og:url', content: 'https://ondabranca.com' });
     this.meta.updateTag({ property: 'og:type', content: 'website' });
   }

@@ -1,22 +1,22 @@
-<div class="uk-container uk-margin-large-top">
+<div class="uk-container">
     <!--Sobre nos-->
-    <div class="uk-child-width-1-2@l uk-grid uk-grid-match">
+    <div class="uk-child-width-1-2@l uk-grid">
         <div>
             <img width="100%" height="auto" src="imagens/onda_branca_about.webp" alt="about">
         </div>
-        <div>
-            <span class="uk-margin-large-top uk-margin-remove-bottom@l" style="font-size: 16px; color: #00a7fb;" >Sobre nós</span>
-            <h1 style="font-size: 30px; font-weight: bold; color: #094268; margin-bottom: -5px !important;" class="uk-margin-remove-top title"> Onda Branca</h1>
+        <div class="uk-card uk-card-body">
+            <span class="" style="font-size: 16px; color: #00a7fb;" >Sobre nós</span>
+            <h1 style="font-size: 30px; font-weight: bold; color: #094268;" class="uk-margin-remove-top title"> Onda Branca</h1>
             <p style="font-size: 16px; margin-bottom: 0; color: #0067A3;" class="uk-margin-remove@l">Acreditamos que saúde mental e produtividade andam de mãos dadas.</p>
             <p style="font-size: 16px; color: #0067A3;" class="uk-margin-remove@l">Nossa missão é criar locais de trabalho mais saudáveis ​​e produtivos, fornecendo recursos e treinamentos acessíveis e baseados em evidências.</p>
             <div>
-                <button class="uk-button uk-button-small" style="font-size: 12.8px; padding: 8px 24px; border-radius: 20px; background-color: #0067A3; color: #EBE3EC;">Saiba mais <span class="uk-icon" style="color: #EBE3EC;" uk-icon="icon: arrow-right"></span> </button>
+                <a [routerLink]="['/sobre']"  class="uk-button uk-button-small" style="font-size: 12.8px; padding: 8px 24px; border-radius: 20px; background-color: #0067A3; color: white;">Saiba mais <span class="uk-icon" style="color: #EBE3EC;" uk-icon="icon: arrow-right"></span> </a>
             </div>
         </div>
     </div>
 
     <!--Porfessores-->
-    <div class="uk-container uk-margin-large-top uk-margin-large-bottom">
+    <div class="uk-container uk-margin-large-bottom">
         <div class="uk-child-width-1-2@l uk-grid">
             <div class="uk-width-auto@l" style="width: 420px;">
                 <h2 style="font-size: 30px; color: #094268; font-weight: bold; margin: 0; max-width: 350px;" class="title uk-margin-small-bottom">Conheça Nossa Equipe de Formadores</h2>

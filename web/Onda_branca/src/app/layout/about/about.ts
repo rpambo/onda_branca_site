@@ -2,10 +2,11 @@ import { Component } from '@angular/core';
 import { Teachers } from '../../interfaces';
 import { Teacher } from '../../services/teacher';
 import { CommonModule } from '@angular/common';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-about',
-  imports: [CommonModule],
+  imports: [CommonModule, RouterLink],
   templateUrl: './about.html',
   styleUrl: './about.css'
 })

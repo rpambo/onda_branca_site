@@ -5,10 +5,11 @@ import { CommonModule } from '@angular/common';
 import { Pub } from '../../services/pub';
 import { pub } from '../../interfaces';
 import { formatDate } from '@angular/common';
+import { Footer } from "../../layout/footer/footer";
 
 @Component({
   selector: 'app-seachs',
-  imports: [Navbar, CommonModule],
+  imports: [Navbar, CommonModule, Footer],
   templateUrl: './seachs.html',
   styleUrl: './seachs.css'
 })

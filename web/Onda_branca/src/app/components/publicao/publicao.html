@@ -1,15 +1,13 @@
 <app-navbar></app-navbar>
 <div class="uk-margin-large-top" style="height: 10px;"></div>
-<div style="background-color: #0067A3; padding: 1rem 0;" class="uk-margin-large-top">
+<div style="background-color: #0067A3; padding: 1rem 0; border-radius: 50px;" class="uk-margin-large-top">
   <div class="uk-container">
-    <h1 class="header-text uk-text-center@s uk-text-left@m">
-        <ng-container *ngIf="query && query.trim() === '%20'">
-            Resultado da pesquisa:
-        </ng-container>
-        <ng-container *ngIf="query && query.trim() !== '%20'">
-            Resultado da pesquisa: {{ query }}
-        </ng-container>
+    <h1 class="header-text uk-text-center" >
+        Publicações
     </h1>
+    <div class="uk-text-center">
+        <span style="color: white; font-size: 14px;">Onda Branca > publicacao </span>
+    </div>
   </div>
 </div>
 
@@ -22,6 +20,9 @@
                 <span style="border-radius: 20px; background-color: #00a7fb6c; color: #094268; padding: 5px; font-size: 10px;">{{ formatDateOrRecent(pub.created_at) }}</span>
                 <a href="" style="font-size: 14px; font-weight: 700; color: #094268; display: block;" class="uk-margin-small">Ler a publicacao</a>
             </div>
+        </div>
+        <div *ngIf="isLoading" class="uk-width-1-1 uk-flex uk-flex-center uk-margin-large-top">
+            <div uk-spinner="ratio: 1.5"></div>
         </div>
     </div>
 </div>
