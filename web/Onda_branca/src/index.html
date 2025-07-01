@@ -23,5 +23,21 @@
 </head>
 <body>
   <app-root></app-root>
+  <a onclick="window.scrollTo({ top: 0, behavior: 'smooth' })"
+    id="voltar-topo" class="uk-position-fixed uk-flex-middle uk-flex uk-position-bottom-right uk-icon-button uk-margin-small-right uk-margin-small-bottom"
+    style="opacity: 0; z-index: 999; border-radius: 20px; background-color: #0067A3;"><span class="uk-icon uk-flex-middle uk-flex" style="color: white;" uk-icon="icon: chevron-up"></span>
+  </a>
+
+  <script>
+  const scrollBtn = document.getElementById('voltar-topo');
+
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 800) {
+      scrollBtn.style.opacity = '1';
+    } else {
+      scrollBtn.style.opacity = '0';
+    }
+  });
+</script>
 </body>
 </html>

@@ -50,6 +50,11 @@ button:hover{
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
+.uk-icon-button.icon-branca {
+  background-color: #00a7fb !important;
+  color: white !important;
+}
+
 @media (max-width: 360px) {
   .uk-navbar-container{
     margin-bottom: 20px !important;

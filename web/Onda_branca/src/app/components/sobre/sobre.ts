@@ -2,11 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { Meta, Title } from '@angular/platform-browser';
 import { Navbar } from "../navbar/navbar";
 import { Footer } from "../../layout/footer/footer";
+import { Historia } from "../../layout/historia/historia";
 
 @Component({
   selector: 'app-sobre',
   standalone: true,
-  imports: [Navbar, Footer],
+  imports: [Navbar, Footer, Historia],
   templateUrl: './sobre.html',
   styleUrls: ['./sobre.css']
 })

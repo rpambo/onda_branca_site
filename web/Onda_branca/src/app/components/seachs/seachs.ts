@@ -16,7 +16,8 @@ import { Footer } from "../../layout/footer/footer";
 export class Seachs {
 
   query = ''
-  pubs : pub[] = []; 
+  pubs : pub[] = [];
+  isLoading : boolean = false
 
   isRecent(dateString: string): boolean {
     const date = new Date(dateString);
@@ -46,12 +47,15 @@ export class Seachs {
   }
 
   onSearch(term : string) {
+    this.isLoading = true
     this.service.getBySeach(term).subscribe({
       next: (res) => {
         this.pubs = res;
+        this.isLoading = false
       },
       error: (err) =>{
         console.log(err)
+        this.isLoading = false
       }
     })
   }

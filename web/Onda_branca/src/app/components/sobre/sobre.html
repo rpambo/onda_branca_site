@@ -43,13 +43,59 @@
     </div>
 </div>
 
-<div style="background-color: #9A74A1; padding: 2rem 0; border-radius: 50px;">
+<div class="uk-container uk-margin-medium-bottom">
+  <div class="uk-child-width-1-3@l uk-grid uk-grid-match">
+    
+    <div uk-scrollspy="cls: uk-animation-slide-bottom uk-margin-small">
+      <div class="uk-card uk-card-default uk-card-body" style="border-radius: 20px;">
+        <div >
+          <img src="imagens/goal.png" width="50px" style="color: #00a7fb;" alt="">
+          <h4 class="uk-card-title uk-margin-small" style="color: #094268; font-size: clamp(18px, 2vw, 32px); font-weight: bold;">MISSAO</h4>
+        </div>
+        <p style="color: #0067A3;">Promover a saúde mental e o bem-estar emocional de forma contínua, acessível e transformadora.  Oferecemos conteúdos, formações e ações que capacitam pessoas e organizações a integrarem o cuidado emocional em sua rotina, com empatia, consciência e responsabilidade</p>
+      </div>      
+    </div>
+
+    <div uk-scrollspy="cls: uk-animation-slide-bottom uk-margin-small">
+      <div class="uk-card uk-card-default uk-card-body" style="border-radius: 20px;">
+        <div>
+          <img width="50px" src="imagens/vissao.png" alt="vissao icon">
+          <h4 class="uk-card-title uk-margin-small" style="color: #094268; font-size: clamp(18px, 2vw, 32px); font-weight: bold;">VISSAO</h4>
+        </div>
+        <p style="color: #0067A3;">Ser uma referência nacional no fortalecimento da saúde mental como valor essencial no desenvolvimento humano, educacional e profissional contribuindo para uma sociedade mais equilibrada, acolhedora e produtiva durante todo o ano.</p>
+      </div>      
+    </div>
+
+    <div uk-scrollspy="cls: uk-animation-slide-bottom uk-margin-small">
+      <div class="uk-card uk-card-default uk-card-body" style="border-radius: 20px;">
+        <div>
+          <img width="50px" src="imagens/valor.png" alt="missao icon">
+          <h4 class="uk-card-title uk-margin-small" style="color: #094268; font-size: clamp(18px, 2vw, 32px); font-weight: bold;">VALOR</h4>
+        </div>
+        
+        <div>
+          <ul class="uk-list uk-list-divider">
+            <li style="color: #0067A3;"><span uk-icon="icon: triangle-right" class="uk-margin-small-right" style="color: #0067A3;"></span>Empatia</li>
+            <li style="color: #0067A3;"><span uk-icon="icon: triangle-right" class="uk-margin-small-right" style="color: #0067A3;"></span>Compromisso continue</li>
+            <li style="color: #0067A3;"><span uk-icon="icon: triangle-right" class="uk-margin-small-right" style="color: #0067A3;"></span>Educação e conscientização</li>
+            <li style="color: #0067A3;"><span uk-icon="icon: triangle-right" class="uk-margin-small-right" style="color: #0067A3;"></span>Acolhimento</li>
+            <li style="color: #0067A3;"><span uk-icon="icon: triangle-right" class="uk-margin-small-right" style="color: #0067A3;"></span>Transparência</li>
+            <li style="color: #0067A3;"><span uk-icon="icon: triangle-right" class="uk-margin-small-right" style="color: #0067A3;"></span>Colaboração</li>
+          </ul>
+        </div>
+      </div>      
+    </div>
+
+  </div>
+</div>
+
+<div class="uk-margin-medium-bottom" style="background-color: #9A74A1; padding: 2rem 0; border-radius: 50px;">
   <div class="uk-container">
-    <div class="uk-grid uk-child-width-1-3@l uk-child-width-1-2@m uk-grid-small uk-flex-center">
+    <div class="uk-grid uk-child-width-1-3@l uk-child-width-1-2@m uk-grid-small uk-flex-center" uk-scrollspy="cls: uk-animation-slide-bottom">
       
-      <div class="">
+      <div>
         <div class="uk-inline uk-flex uk-flex-middle">
-          <img src="imagens/global.png" width="50" style="filter: brightness(0) invert(1);" alt="Aluno">
+          <img src="imagens/goal.png" width="50" style="filter: brightness(0) invert(1);" alt="Aluno">
           <div class="uk-margin-small-left">
             <div style="color: white; font-size: 18px;">Existência</div>
             <div style="color: white; font-size: 18px;"><b>1 ano</b></div>
@@ -80,5 +126,7 @@
     </div>
   </div>
 </div>
+
+<app-historia></app-historia>
 
 <app-footer></app-footer>

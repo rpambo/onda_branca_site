@@ -9,19 +9,19 @@
     <div class="uk-navbar-center uk-visible@m"  >
       <form  [formGroup]="form" (ngSubmit)="onSearch()" class="uk-search uk-search-navbar" style="width: 150px;">
         <span uk-search-icon style="color: white; font-weight: bolder;"></span>
-        <input formControlName="search"  class="uk-search-input" name="q" style="border-radius: 20px; background-color: #0067A3; color: white; border: solid 1px #0067A3; font-size: 12.8px;" type="text" placeholder="pesquisar...">
+        <input autocomplete="on" formControlName="search"  class="uk-search-input" name="q" style="border-radius: 20px; background-color: #0067A3; color: white; border: solid 1px #0067A3; font-size: 12.8px;" type="text" placeholder="pesquisar...">
       </form>
       <ul class="uk-navbar-nav" uk-scrollspy-nav="closest: li; scroll: true">
         
         <li [class.uk-active]="activeSection === 'sobre'"><a [routerLink]="['/sobre']" (click)="setActive('sobre')">Sobre nós</a></li>
         <li [class.uk-active]="activeSection === 'servico'"><a href="/onda/#servico" uk-scroll (click)="setActive('servico')">Serviços</a></li>
-        <li [class.uk-active]="activeSection === 'testemunho'"><a href="/onda/#testmunho" uk-scroll (click)="setActive('testemunho')">Testemunhos</a></li>
+        <li [class.uk-active]="activeSection === 'testemunho'"><a href="/onda/#testemunho" uk-scroll (click)="setActive('testemunho')">Testemunhos</a></li>
         <li [class.uk-active]="activeSection === 'publicacao'"><a [routerLink]="['/publicacao']" (click)="setActive('publicacao')">Publicações</a></li>
         <li><a href="/comunidade">Comunidade</a></li>
       </ul>
     </div>
     <div class="uk-navbar-right">
-      <a uk-toggle class="uk-hidden@m uk-icon-button" style="background-color: #00a7fb; color: white !important;" href="#modal-full" uk-search-icon uk-toggle></a>
+      <a uk-toggle class="uk-hidden@m uk-icon-button icon-branca" href="#modal-full" uk-search-icon uk-toggle></a>
       <a href="#off-canvas" class="uk-icon-button uk-hidden@m" style="background-color: #0067A3; color: white !important;" uk-toggle uk-icon="icon: menu"></a>
       <button class="uk-button uk-button-small uk-visible@m" style="border-radius: 20px; background-color: #0067A3; color: white !important;; font-size: 12.8px; padding: 8px 24px;">Contactar</button>
     </div>
