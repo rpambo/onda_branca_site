@@ -8,6 +8,7 @@ import (
 	"github.com/go-chi/chi/v5/middleware"
 	"github.com/go-chi/cors"
 	"github.com/nedpals/supabase-go"
+	"github.com/rpambo/onda_branca_site/internal/mailer"
 	"github.com/rpambo/onda_branca_site/internal/store"
 	"go.uber.org/zap"
 )
@@ -17,13 +18,15 @@ type application struct {
 	store		store.Storage
 	logger		*zap.SugaredLogger
 	supabase	*supabase.Client
+	Mailer		mailer.Client
 }
 
 type config struct {
-	Addr		string
-	DB			dbConfig
-	SupabaseURL string
-    SupabaseKey string
+	Addr			string
+	DB				dbConfig
+	SupabaseURL 	string
+    SupabaseKey 	string
+	Mail			mailConfig
 }
 
 type dbConfig struct {
@@ -31,6 +34,21 @@ type dbConfig struct {
 	MaxOpenConns	int
 	MaxIdleConns	int
 	MaxIdleTime		string
+}
+
+type mailConfig struct {
+	SendGrid 	sendGridConfig
+	MailTrap 	mailTrapConfig
+	FromEmail	string
+	Exp			time.Duration
+}
+
+type mailTrapConfig struct {
+	ApiKey	string
+}
+
+type sendGridConfig struct {
+	ApiKey	string
 }
 
 func (app *application) mount() http.Handler {
@@ -72,6 +90,9 @@ func (app *application) mount() http.Handler {
 			r.Post("/create", app.CreatePublication)
 			r.Get("/get_all_pub", app.getAllPub)
 			r.Get("/get_by_search/{q}", app.GetbySearch)
+		})
+		r.Route("/contactos", func(r chi.Router) {
+			r.Post("/send", app.concateUs)
 		})
 	})
 

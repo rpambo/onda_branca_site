@@ -1,0 +1,34 @@
+.header-text {
+  font-size: clamp(18px, 4vw, 32px);
+  font-weight: bold;
+  color: white;
+  margin: 0;
+  line-height: 1.4;
+}
+
+label{
+    color: #094268;
+}
+
+/* Botões principais */
+.uk-button {
+  color: #FFFFFF !important; /* texto branco */
+  background-color: #0067A3 !important; /* azul mais escuro para contraste */
+}
+.uk-button:hover{
+    background-color: #9A74A1 !important;
+    border: solid #9A74A1 1px
+}
+
+ .loading-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.7); /* ou 0.5 se quiser ver o fundo */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+  }

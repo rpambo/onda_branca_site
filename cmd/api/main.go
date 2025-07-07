@@ -9,6 +9,7 @@ import (
 
 	"github.com/rpambo/onda_branca_site/internal/db"
 	"github.com/rpambo/onda_branca_site/internal/env"
+	"github.com/rpambo/onda_branca_site/internal/mailer"
 	"github.com/rpambo/onda_branca_site/internal/store"
 	"go.uber.org/zap"
 )
@@ -28,6 +29,16 @@ func main() {
 		},
 		SupabaseURL: env.GetString("SUPABASE_URL", ""),
 		SupabaseKey: env.GetString("SUPABASE_KEY", ""),
+		Mail: mailConfig{
+			FromEmail: env.GetString("FROM_EMAIL", "rkitoco@gmail.com"),
+			Exp: time.Hour * 24 * 3,
+			SendGrid: sendGridConfig{
+				ApiKey: env.GetString("SENDGRID_API_KEY", ""),
+			},
+			MailTrap: mailTrapConfig{
+				ApiKey: env.GetString("MAILTRAP_API_KEY", ""),
+			},
+		},
 	}
 
 	logger := zap.Must(zap.NewProduction()).Sugar()
@@ -46,12 +57,17 @@ func main() {
 	supabaseClient := supabase.CreateClient(cnf.SupabaseURL, cnf.SupabaseKey)
 	store := store.NewStorage(db)
 
+	mailtrap, err := mailer.NewMailTrapClient(cnf.Mail.MailTrap.ApiKey, cnf.Mail.FromEmail)
+	if err != nil{
+		logger.Fatal(err)
+	} 
 	// Create application
 	app := &application{
 		config: cnf,
 		store: store,
 		logger: logger,
 		supabase: supabaseClient,
+		Mailer: mailtrap,
 	}
 
 	// Setup router

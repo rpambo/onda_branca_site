@@ -1,0 +1,110 @@
+<app-navbar></app-navbar>
+<div class="uk-margin-large-top" style="height: 10px;"></div>
+<div style="background-color: #0067A3; padding: 1rem 0; border-radius: 50px;" class="uk-margin-large-top">
+  <div class="uk-container">
+    <div class="uk-text-center">
+        <h1 class="header-text" >
+            Contactos
+        </h1>
+    </div>
+    <div class="uk-text-center">
+        <span style="color: white; font-size: 14px;">Onda Branca > contactos</span>
+    </div>
+  </div>
+</div>
+
+<div class="uk-container uk-margin-medium-top uk-margin-medium-bottom">
+    <div class="uk-child-width-1-2@l uk-grid uk-grid-divider">
+        <div>
+            <div class="uk-card">
+                <h3 style="font-size: 30px; font-weight: bold; color: #094268; margin: 0;" class="title">Entre em contacto</h3>
+                <p style="color: #0067A3; font-size: 16px;">Estamos aqui para ouvir você. Seja para tirar dúvidas, participar das nossas ações ou criar parcerias, será um prazer falar contigo</p>
+                <ul class="uk-list">
+                    <li><span></span></li>
+                </ul>
+            </div>
+        </div>
+        <div>
+            <form [formGroup]="form" (ngSubmit)="onSubmite()" class="uk-form-stacked">
+                <div class="uk-margin">
+                    <label [style.color]="form.controls.name.invalid && (form.controls.name.touched || form.controls.name.dirty) ? 'red' :'#094268'" class="uk-form-label" for="name" >*Nome completo</label>
+                    <input class="uk-input uk-form" formControlName="name"  type="text" name="name" id="name" style="border: solid #00A6FB 2px; border-radius: 20px;"
+                    [ngStyle]="{'border':
+                        form.controls.name.invalid && (form.controls.name.touched || form.controls.name.dirty) ? 'solid red 2px' : 'solid #00A6FB 2px'
+                    }"
+                     placeholder="Introduzir o nome completo">
+                </div>
+                <div *ngIf="form.controls.name.invalid && (form.controls.name.touched || form.controls.name.dirty)">
+                    <span style="color: red; font-size: 12px;" *ngIf="form.controls.name.hasError('required')">*O nome é obrigatório.</span>
+                </div>
+                <div class="uk-flex uk-child-width-1-2@l uk-margin">
+                    
+                    <div class="uk-margin-small-right">
+                            <label [style.color]="form.controls.email.invalid && (form.controls.email.touched || form.controls.email.dirty) ? 'red' :'#094268'" class="uk-form-label" for="email">*email</label>
+                            <input class="uk-input uk-width-1-1" formControlName="email" type="email" name="email" id="email" style="border: solid #00A6FB 2px; border-radius: 20px;"
+                            [ngStyle]="{'border':
+                            form.controls.email.invalid && (form.controls.email.touched || form.controls.email.dirty) ? 'solid red 2px' : 'solid #00A6FB 2px'
+                            }"
+                            placeholder="Introduzir o email">
+                        <div *ngIf="form.controls.email.invalid && (form.controls.email.touched || form.controls.email.dirty)">
+                            <span style="color: red; font-size: 12px;" *ngIf="form.controls.email.hasError('required')">*O email é obrigatório.</span>
+                            <span style="color: red; font-size: 12px;" *ngIf="form.controls.email.hasError('email')">*email invalido.</span>
+                        </div>
+                    </div>
+                    <div>
+                        <label class="uk-form-label" for="tel" [style.color]="form.controls.tel.invalid && (form.controls.tel.touched || form.controls.tel.dirty) ? 'red' : '#094268' ">*WhatsApp</label>
+                        <input class="uk-input uk-width-1-1" type="tel" name="tel" id="tel" style="border: solid #00A6FB 2px; border-radius: 20px;"
+                            [ngStyle]="{'border':
+                                form.controls.tel.invalid && (form.controls.tel.touched || form.controls.tel.dirty) ? 'solid red 2px' : 'solid #00A6FB 2px'}" formControlName="tel"
+                                placeholder="Introduzir o WhatsApp"
+                        />
+                        <div *ngIf="form.controls.tel.invalid && (form.controls.tel.touched || form.controls.tel.dirty)">
+                            <span style="color: red; font-size: 12px; display: block;" *ngIf="form.controls.tel.hasError('required')">*O WhatsAppé obrigatório.</span>
+                            <span style="color: red; font-size: 12px; display: block;" *ngIf="form.controls.tel.hasError('minlength')">*tem conter 9 digitos.</span>
+                            <span style="color: red; font-size: 12px; display: block;" *ngIf="form.controls.tel.hasError('maxlength')">*tem conter 9 digitos.</span>
+                            <span style="color: red; font-size: 12px;" *ngIf="form.controls.tel.hasError('pattern')">*tem conter apenas digitos.</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="uk-margin">
+                    <label [style.color]="form.controls.assunto.invalid && (form.controls.assunto.touched || form.controls.assunto.dirty) ? 'red' :'#094268'" for="assunto" class="uk-form-label">*Assunto</label>
+                    <input class="uk-input" type="text" id="assunto" style="border: solid #00A6FB 2px; border-radius: 20px;" 
+                    [ngStyle]="{'border':
+                     form.controls.assunto.invalid && (form.controls.assunto.touched || form.controls.assunto.dirty) ? 'solid red 2px' : 'solid #00A6FB 2px'
+                    }"
+                    formControlName="assunto"
+                    placeholder="Introduzir o assunto"
+                    >
+
+                    <div *ngIf="form.controls.assunto.invalid && (form.controls.assunto.touched || form.controls.assunto.dirty)">
+                    <span style="color: red; font-size: 12px;" *ngIf="form.controls.name.hasError('required')">*O assunto é obrigatório.</span>
+                </div>
+                </div>
+                <div class="uk-margin">
+                    <label [style.color]="form.controls.messagem.invalid && (form.controls.messagem.touched || form.controls.messagem.dirty) ? 'red' :'#094268'" for="mensagem" class="uk-form-label">*Mensagem</label>
+                    <textarea maxlength="500" formControlName="mensagem" class="uk-textarea"  name="" id="" style="border: solid #00A6FB 2px; border-radius: 20px;" 
+                    [ngStyle]="{'border':
+                     form.controls.messagem.invalid && (form.controls.messagem.touched || form.controls.messagem.dirty) ? 'solid red 2px' : 'solid #00A6FB 2px'
+                    }"
+                    formControlName="messagem"
+                    placeholder="Introduzir a mensagem"
+                    >
+
+                    </textarea>
+                    <div class="uk-text-meta uk-text-right uk-margin-small-top">
+                        {{ form.get('messagem')?.value?.length }}/500
+                    </div>
+
+                </div>
+                <div class="uk-margin">
+                    <button class="uk-button" type="submit" class="uk-button uk-button-small uk-width-1-1" style="border: solid #00A6FB 1px; border-radius: 20px; padding: 8px 20px; color: #EBE3EC; font-size: 14.8px !important;">ENVIAR</button>
+                </div>
+            </form>
+            <div *ngIf="isLoading" class="loading-overlay">
+                <img src="https://i.gifer.com/ZZ5H.gif" alt="Enviando..." />
+            </div>
+        </div>
+    </div>
+</div>
+
+<app-footer></app-footer>
