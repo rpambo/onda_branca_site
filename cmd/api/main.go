@@ -30,7 +30,7 @@ func main() {
 		SupabaseURL: env.GetString("SUPABASE_URL", ""),
 		SupabaseKey: env.GetString("SUPABASE_KEY", ""),
 		Mail: mailConfig{
-			FromEmail: env.GetString("FROM_EMAIL", "rkitoco@gmail.com"),
+			FromEmail: env.GetString("FROM_EMAIL", ""),
 			Exp: time.Hour * 24 * 3,
 			SendGrid: sendGridConfig{
 				ApiKey: env.GetString("SENDGRID_API_KEY", ""),
