@@ -19,7 +19,7 @@ jobs:
 
       - name: Install dependencies
         run: |
-          cd web/onda
+          cd web/Onda_branca
           npm ci
 
       - name: Build Angular app
