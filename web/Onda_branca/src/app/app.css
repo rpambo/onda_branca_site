@@ -4,3 +4,14 @@ body {
 p, span {
   font-size: 12px !important;
 }
+
+.circle {
+  position: fixed;
+  height: 24px;
+  width: 24px;
+  border-radius: 24px;
+  pointer-events: none;
+  z-index: 99999999;
+  background-color: black;
+  transition: transform 0.1s linear;
+}

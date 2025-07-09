@@ -1,4 +1,4 @@
-.circle {
+.circle-lilas {
   background-color: #7B5D8110;
 }
 
@@ -21,7 +21,7 @@ button:hover{
   color: #EBE3EC !important;
 }
 
-.circle, .circle-blu {
+.circle-lilas, .circle-blu {
   width: 90%;
   max-width: 340px;
   aspect-ratio: 1 / 1;
