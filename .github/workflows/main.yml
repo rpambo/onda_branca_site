@@ -30,4 +30,4 @@ jobs:
       - name: Deploy to GitHub Pages
         run: |
           cd web/Onda_branca
-          npx angular-cli-ghpages --dir=dist/onda
+          npx angular-cli-ghpages --dir=dist/onda --no-silent
