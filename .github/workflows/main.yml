@@ -29,7 +29,7 @@ jobs:
       - name: Build Angular App
         run: |
           cd web/Onda_branca
-          npm run build -- --configuration production --output-path=dist --base-href="/onda_branca_site/"
+          npm run build -- --configuration production --output-path=dist --base-href="/onda/"
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
