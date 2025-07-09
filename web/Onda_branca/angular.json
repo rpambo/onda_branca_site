@@ -13,8 +13,6 @@
         "build": {
           "builder": "@angular/build:application",
           "options": {
-            "outputPath": "dist/onda",
-            "baseHref": "/onda/",
             "browser": "src/main.ts",
             "polyfills": [
               "zone.js"

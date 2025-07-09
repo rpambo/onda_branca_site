@@ -1,11 +1,11 @@
-name: Build and Deploy Angular App
+name: Build and Deploy Angular App to GitHub Pages
 
 on:
   push:
     branches: [main]
 
 jobs:
-  build:
+  build-and-deploy:
     runs-on: ubuntu-latest
 
     steps:
@@ -25,14 +25,11 @@ jobs:
       - name: Build Angular App
         run: |
           cd web/Onda_branca
-          npm run build
-
-      - name: Set Git identity
-        run: |
-          git config --global user.email "github-actions[bot]@users.noreply.github.com"
-          git config --global user.name "github-actions[bot]"
+          npm run build -- --configuration production --output-path=dist
 
       - name: Deploy to GitHub Pages
-        run: |
-          cd web/Onda_branca
-          npx angular-cli-ghpages --dir=dist/Onda_branca --no-silent
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: web/Onda_branca/dist
+          keep_files: false
