@@ -1,23 +1,19 @@
-name: Build and Deploy Angular App to GitHub Pages
+name: Build and Deploy Angular App
 
 on:
   push:
     branches: [main]
 
 jobs:
-  build-and-deploy:
+  build:
     runs-on: ubuntu-latest
-    permissions:
-      contents: write
-      pages: write
-      id-token: write
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v4.2.2
 
       - name: Setup Node.js
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v3.9.1
         with:
           node-version: 22
 
@@ -29,10 +25,4 @@ jobs:
       - name: Build Angular App
         run: |
           cd web/Onda_branca
-          npm run build -- --configuration production --output-path=dist --base-href="/onda/"
-
-      - name: Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v3
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: web/Onda_branca/dist/Onda_branca/browser
+          npm run build
