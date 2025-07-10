@@ -17,13 +17,19 @@
         <li [class.uk-active]="activeSection === 'servico'"><a href="/onda/#servico" uk-scroll (click)="setActive('servico')">Serviços</a></li>
         <li [class.uk-active]="activeSection === 'testemunho'"><a href="/onda/#testemunho" uk-scroll (click)="setActive('testemunho')">Testemunhos</a></li>
         <li [class.uk-active]="activeSection === 'publicacao'"><a [routerLink]="['/publicacao']" (click)="setActive('publicacao')">Publicações</a></li>
-        <li><a href="/comunidade">Comunidade</a></li>
+        <li [class.uk-active]="activeSection === 'comunidade'"><a href="/comunidade" (click)="setActive('comunidade')">Comunidade</a></li>
       </ul>
     </div>
     <div class="uk-navbar-right">
       <a uk-toggle class="uk-hidden@m uk-icon-button icon-branca" href="#modal-full" uk-search-icon uk-toggle></a>
       <a href="#off-canvas" class="uk-icon-button uk-hidden@m" style="background-color: #0067A3; color: white !important;" uk-toggle uk-icon="icon: menu"></a>
-      <a [routerLink]="['/contactos']" class="uk-button uk-button-small uk-visible@m" style="border-radius: 20px; background-color: #0067A3; color: white !important;; font-size: 12.8px; padding: 8px 24px;">Contactar</a>
+      <ng-container *ngIf="comunidade; else elseTemplate">
+        <a [routerLink]="['/contactos']" class="uk-button uk-button-small uk-visible@m" style="border-radius: 20px; background-color: #0067A3; color: white !important;; font-size: 12.8px; padding: 8px 24px;">Contactar</a>
+      </ng-container>
+      <ng-template #elseTemplate>
+        <a [routerLink]="['/contactos']" class="uk-button uk-button-small uk-visible@m" style="border-radius: 20px; background-color: #9A74A1; color: white !important;; font-size: 12.8px; padding: 8px 24px;">Fazer parte da comunidade</a>
+      </ng-template>
+      
     </div>
   </nav>
   </div>
