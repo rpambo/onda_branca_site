@@ -17,7 +17,7 @@
         <li [class.uk-active]="activeSection === 'servico'"><a href="/onda/#servico" uk-scroll (click)="setActive('servico')">Serviços</a></li>
         <li [class.uk-active]="activeSection === 'testemunho'"><a href="/onda/#testemunho" uk-scroll (click)="setActive('testemunho')">Testemunhos</a></li>
         <li [class.uk-active]="activeSection === 'publicacao'"><a [routerLink]="['/publicacao']" (click)="setActive('publicacao')">Publicações</a></li>
-        <li [class.uk-active]="activeSection === 'comunidade'"><a href="/comunidade" (click)="setActive('comunidade')">Comunidade</a></li>
+        <li [class.uk-active]="activeSection === 'comunidade'"><a [routerLink]="['/comunidade']" (click)="setActive('comunidade')">Comunidade</a></li>
       </ul>
     </div>
     <div class="uk-navbar-right">
