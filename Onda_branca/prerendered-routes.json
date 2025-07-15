@@ -1,0 +1,10 @@
+{
+  "routes": {
+    "/": {},
+    "/comunidade": {},
+    "/contactos": {},
+    "/publicacao": {},
+    "/search": {},
+    "/sobre": {}
+  }
+}
