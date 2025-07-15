@@ -5,7 +5,7 @@ on:
     branches: [main]
 
 jobs:
-  INSTALATION:
+  install:
     runs-on: ubuntu-latest
 
     steps:
@@ -22,7 +22,8 @@ jobs:
           cd web/Onda_branca
           npm ci
   
-  BUILD:
+  build:
+    needs: install
     runs-on: ubuntu-latest
 
     steps:
