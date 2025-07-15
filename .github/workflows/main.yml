@@ -90,6 +90,6 @@ jobs:
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
+          github_token: ${{ secrets.onda }}
           publish_dir: ${{ env.WORKING_DIR }}/dist
           keep_files: true
