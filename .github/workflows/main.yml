@@ -3,31 +3,93 @@ name: Build and Deploy Angular App
 on:
   push:
     branches: [main]
+  pull_request:
+    branches: [main]
+
+env:
+  WORKING_DIR: web/Onda_branca
 
 jobs:
   install:
     runs-on: ubuntu-latest
+    outputs:
+      cache-hit: ${{ steps.cache-deps.outputs.cache-hit }}
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4.2.2
+        uses: actions/checkout@v4
 
       - name: Setup Node.js
-        uses: actions/setup-node@v3.9.1
+        uses: actions/setup-node@v4
         with:
           node-version: 22
+          cache: 'npm'
+
+      - name: Cache node modules
+        id: cache-deps
+        uses: actions/cache@v4
+        with:
+          path: |
+            ${{ env.WORKING_DIR }}/node_modules
+            ${{ env.WORKING_DIR }}/.angular/cache
+          key: ${{ runner.os }}-node-${{ hashFiles('${{ env.WORKING_DIR }}/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
 
       - name: Install dependencies
         run: |
-          cd web/Onda_branca
+          cd ${{ env.WORKING_DIR }}
           npm ci
-  
+        if: steps.cache-deps.outputs.cache-hit != 'true'
+
   build:
     needs: install
     runs-on: ubuntu-latest
 
     steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Restore cached dependencies
+        uses: actions/cache@v4
+        with:
+          path: |
+            ${{ env.WORKING_DIR }}/node_modules
+            ${{ env.WORKING_DIR }}/.angular/cache
+          key: ${{ runner.os }}-node-${{ hashFiles('${{ env.WORKING_DIR }}/package-lock.json') }}
+
       - name: Build Angular App
         run: |
-          cd web/Onda_branca
-          npm run build
+          cd ${{ env.WORKING_DIR }}
+          npm run build -- --configuration=production
+
+      - name: Upload build artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: angular-dist
+          path: ${{ env.WORKING_DIR }}/dist/**
+          retention-days: 5
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main'
+
+    steps:
+      - name: Download build artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: angular-dist
+          path: ${{ env.WORKING_DIR }}/dist
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ${{ env.WORKING_DIR }}/dist
+          keep_files: true
