@@ -5,7 +5,7 @@ on:
     branches: [main]
 
 jobs:
-  build:
+  INSTALATION:
     runs-on: ubuntu-latest
 
     steps:
@@ -21,7 +21,11 @@ jobs:
         run: |
           cd web/Onda_branca
           npm ci
+  
+  BUILD:
+    runs-on: ubuntu-latest
 
+    steps:
       - name: Build Angular App
         run: |
           cd web/Onda_branca
