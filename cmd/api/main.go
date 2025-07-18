@@ -6,11 +6,13 @@ import (
 
 	"github.com/joho/godotenv"
 	"github.com/nedpals/supabase-go"
+	"github.com/redis/go-redis/v9"
 
 	"github.com/rpambo/onda_branca_site/internal/db"
 	"github.com/rpambo/onda_branca_site/internal/env"
 	"github.com/rpambo/onda_branca_site/internal/mailer"
 	"github.com/rpambo/onda_branca_site/internal/store"
+	"github.com/rpambo/onda_branca_site/internal/store/cache"
 	"go.uber.org/zap"
 )
 
@@ -18,7 +20,6 @@ func main() {
 	// Load configuration
 	_ = godotenv.Load()
 	
-
 	cnf := config{
 		Addr: env.GetString("ADDR", "0.0.0.0:8080"),
 		DB: dbConfig{
@@ -39,6 +40,12 @@ func main() {
 				ApiKey: env.GetString("MAILTRAP_API_KEY", ""),
 			},
 		},
+		Redis: redisConfig{
+			addr: env.GetString("REDIS_ADDR", "localhost:6379"),
+			password: env.GetString("REDIS_PW", ""),
+			db: env.GetInt("REDIS_DB", 0),
+			enable: env.GetBool("REDIS_ENABLED", false),
+		},
 	}
 
 	logger := zap.Must(zap.NewProduction()).Sugar()
@@ -53,18 +60,28 @@ func main() {
 	defer db.Close()
 	logger.Info("database connection pool established")
 	
+	var rdb *redis.Client
+	if cnf.Redis.enable {
+		rdb = cache.NewRedisClient(cnf.Redis.addr, cnf.Redis.password, cnf.Redis.db)
+		logger.Info("redis cache connection established")
+		defer rdb.Close()
+	}
+
 	// Initialize Supabase client
 	supabaseClient := supabase.CreateClient(cnf.SupabaseURL, cnf.SupabaseKey)
 	store := store.NewStorage(db)
+	storeCache := cache.NewRedisStorage(rdb)
 
 	mailtrap, err := mailer.NewMailTrapClient(cnf.Mail.MailTrap.ApiKey, cnf.Mail.FromEmail)
 	if err != nil{
 		logger.Fatal(err)
 	} 
+
 	// Create application
 	app := &application{
 		config: cnf,
 		store: store,
+		cacheStorage: storeCache,
 		logger: logger,
 		supabase: supabaseClient,
 		Mailer: mailtrap,

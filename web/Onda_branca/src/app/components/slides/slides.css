@@ -1,5 +1,5 @@
 .circle-lilas {
-  background-color: #7B5D8110;
+  background-color: #7B5D8110 !important;
 }
 
 .circle-blu {
@@ -35,7 +35,7 @@ button:hover{
 /* Ajustes para telas menores */
 @media (max-width: 768px) {
 
-  .circle, .circle-blu {
+  .circle-lilas, .circle-blu {
     padding: 15px;
     margin: 0 auto 0 auto
   }

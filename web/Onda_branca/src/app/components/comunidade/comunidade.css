@@ -1,8 +1,5 @@
 .back {
-  background-image: url("/imagens/background.png") !important;
-  background-size: cover;        /* Faz a imagem cobrir toda a área */
-  background-position: center;   /* Centraliza a imagem */
-  background-repeat: no-repeat;  /* Evita repetição */
+  background-color: #081f47;
 }
 
 

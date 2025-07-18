@@ -29,6 +29,12 @@ type Storage struct {
 		GetAllPub(context.Context) ([]types.Publication, error)
 		GetbySearch(context.Context, string) ([]types.Publication, error)
 	}
+	Training interface{
+		Create(context.Context, *types.Trainning) error
+	}
+	Modules interface{
+		Create(context.Context, *types.Mudules) error
+	}
 }
 
 func NewStorage(db *sql.DB) Storage{
@@ -36,5 +42,7 @@ func NewStorage(db *sql.DB) Storage{
 		Teacher: &TeacherStore{db},
 		Services: &ServicesStore{db},
 		Publication: &PublicacaoStore{db},
+		Training: &TrainigStore{db},
+		Modules: &ModulesStore{db},
 	}
 }

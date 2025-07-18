@@ -22,24 +22,20 @@ type TeacherCreate struct {
 }
 
 type Services struct {
-	ID        int64    `json:"id"`
-	Type      string   `json:"type" validate:"required,min=2,max=100"`
-	Name      string   `json:"name" validate:"required,min=2,max=100"`
-	Image     Image    `json:"image"`
-	Modules   []string `json:"modules,omitempty"` // omitempty para omitir se vazio
-	Start     string   `json:"start,omitempty"`   // omitempty
-	End       string   `json:"end,omitempty"`     // omitempty
-	CreatedAt string   `json:"created_at"`
-	UpdatedAt string   `json:"updated_at"`
+	ID       		int64    `json:"id"`
+	Type      		string   `json:"type" validate:"required,min=2,max=100"`
+	Name      		string   `json:"name" validate:"required,min=2,max=100"`
+	Image     		Image    `json:"image"`
+	Description     string   `json:"description,omitempty"`   // omitempty
+	CreatedAt 		string   `json:"created_at"`
+	UpdatedAt 		string   `json:"updated_at"`
 }
 
 type CreateServices struct {
-	Type    string   `json:"type" validate:"required,min=2,max=100"`
-	Name    string   `json:"name" validate:"required,min=2,max=100"`
-	Image   Image    `json:"image"`
-	Modules []string `json:"modules,omitempty"` // omitempty para omitir se vazio
-	Start   string   `json:"start,omitempty"`   // omitempty
-	End     string   `json:"end,omitempty"`     // omitempty
+	Type			string   `json:"type" validate:"required,min=2,max=100"`
+	Name			string   `json:"name" validate:"required,min=2,max=100"`
+	Image			Image    `json:"image"`
+	Description		string   `json:"description,omitempty"`
 }
 
 type Publication struct {
@@ -65,4 +61,36 @@ type ContactUs struct {
 	Tel			string	`json:"tel"`
 	Assunto		string	`json:"assunto"`
 	Messagem	string	`json:"messagem"`
+}
+
+type Trainning struct{
+	ID				int64	`json:"id"`
+	ServiceId		int64	`json:"service_id"`
+	OpeningDate		string	`json:"opening_date"`
+	IsPreSale		string	`json:"is_pre_sale"`
+	PreSalePrice	string	`json:"pre_sale_price"`
+	FinalPrice		string	`json:"final_price"`
+}
+
+type TrainingCreate struct{
+	ServiceId		int64	`json:"service_id"`
+	OpeningDate		string	`json:"opening_date"`
+	IsPreSale		string	`json:"is_pre_sale"`
+	PreSalePrice	string	`json:"pre_sale_price"`
+	FinalPrice		string	`json:"final_price"`
+}
+
+type Mudules struct{
+	ID				int64	`json:"id"`
+	TrainingId		int64	`json:"training_id"`
+	Title			string	`json:"title"`
+	Description		string	`json:"description"`
+	Order_number	string	`json:"order_number"`
+}
+
+type ModulesCreate struct{
+	TrainingId		int64	`json:"training_id"`
+	Title			string	`json:"title"`
+	Description		string	`json:"description"`
+	Order_number	string	`json:"order_number"`
 }

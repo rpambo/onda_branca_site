@@ -131,11 +131,22 @@ func (app *application) CreatePublication(w http.ResponseWriter, r *http.Request
 func (app *application) getAllPub(w http.ResponseWriter, r *http.Request) {
 	ctx := r.Context()
 
-	pub, err := app.store.Publication.GetAllPub(ctx)
+	pub, err := app.cacheStorage.Publication.Get(ctx)
 
 	if err != nil{
 		app.internalServerError(w,r,err)
 		return
+	}
+
+	if pub == nil{
+		pub, err = app.store.Publication.GetAllPub(ctx)
+
+		if err != nil{
+			app.internalServerError(w, r, err)
+			return
+		}
+
+		_  = app.cacheStorage.Publication.Set(ctx, pub)
 	}
 
 	if err := app.jsonResponse(w, http.StatusOK, pub); err != nil {

@@ -74,7 +74,6 @@ jobs:
           name: angular-dist
           path: ${{ env.WORKING_DIR }}/dist/**
           retention-days: 5
-
   deploy:
     needs: build
     runs-on: ubuntu-latest

@@ -1,4 +1,4 @@
-{{define "subject"}} Recebemos os seus email {{end}}
+{{define "subject"}} {{.Assunto}} {{end}}
 
 {{define "body"}}
 <!doctype html>
@@ -7,9 +7,9 @@
     <meta name="viewport" content="width=device-width" />
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
   </head>
-  <body> <p>Prezado {{.Name}},</p>
-  <p>Recebemos o seu email e entraremos em contacto brevemente</p>
-  <p>Team Onda Branca</p>
+  <body> <p>Enviado por {{.Name}},</p>
+  <p>{{.Contacto}}</p>
+  <p>{{.Mensagem}}</p>
   </body>
 </html>
 

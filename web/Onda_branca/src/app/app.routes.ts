@@ -5,6 +5,7 @@ import { Publicao } from './components/publicao/publicao';
 import { Sobre } from './components/sobre/sobre';
 import { Contacto } from './components/contacto/contacto';
 import { Comunidade } from './components/comunidade/comunidade';
+import { Services } from './components/services/services';
 
 export const routes: Routes = [
   {path:"", component: Home},
@@ -12,5 +13,6 @@ export const routes: Routes = [
   {path:"sobre", component: Sobre},
   {path:"publicacao", component: Publicao},
   {path:"contactos", component: Contacto},
-  {path:"comunidade", component: Comunidade}
+  {path:"comunidade", component: Comunidade},
+  {path:"treinamento", component: Services}
 ];

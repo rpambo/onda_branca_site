@@ -6,7 +6,6 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/lib/pq"
 	"github.com/rpambo/onda_branca_site/types"
 )
 
@@ -16,47 +15,41 @@ type ServicesStore struct {
 
 func (s *ServicesStore) Create(ctx context.Context, service *types.Services) error {
     query := `
-        INSERT INTO services(type, name, image_url, modules, start_date, end_date, created_at, updated_at)
+        INSERT INTO services(type, name, image_url, description, created_at, updated_at)
         VALUES($1, $2, $3, $4, $5, $6, $7, $8)
-        RETURNING id, type, name, image_url, modules, start_date, end_date, created_at, updated_at
+        RETURNING id, type, name, image_url, description, created_at, updated_at
     `
-    
+
     ctx, cancel := context.WithTimeout(ctx, QueryContextTime)
     defer cancel()
+
+    now := time.Now()
 
     err := s.db.QueryRowContext(
         ctx,
         query,
-        service.Type,       // $1
-        service.Name,        // $2
-        service.Image.URL,  // $3
-        pq.Array(service.Modules), // $4 (using pq.Array for PostgreSQL arrays)
-        service.Start,       // $5
-        service.End,         // $6
-        time.Now(),          // $7
-        time.Now(),          // $8
+        service.Type,
+        service.Name,
+        service.Image.URL,
+        service.Description,
+        now,
+        now,
     ).Scan(
         &service.ID,
         &service.Type,
         &service.Name,
         &service.Image.URL,
-        pq.Array(&service.Modules), // For array scanning
-        &service.Start,
-        &service.End,
+        &service.Description,
         &service.CreatedAt,
         &service.UpdatedAt,
     )
 
-    if err != nil {
-        return err
-    }
-
-    return nil
+    return err
 }
 
 
 func (s *ServicesStore) GetAllServices(ctx context.Context) ([]types.Services, error){
-    query := `SELECT id, name, type, modules, image_url, start_date, end_date, created_at, updated_at FROM services`
+    query := `SELECT id, name, type, image_url, description, created_at, updated_at FROM services`
 
     ctx, cancel := context.WithTimeout(ctx, QueryContextTime)
     defer cancel()
@@ -74,7 +67,7 @@ func (s *ServicesStore) GetAllServices(ctx context.Context) ([]types.Services, e
         var t types.Services
         var image types.Image
 
-        if err := row.Scan(&t.ID, &t.Name, &t.Type, pq.Array(&t.Modules), &image.URL, &t.Start, &t.End, &t.CreatedAt, &t.UpdatedAt); err != nil {
+        if err := row.Scan(&t.ID, &t.Name, &t.Type, &image.URL, &t.Description, &t.CreatedAt, &t.UpdatedAt); err != nil {
             return nil, err
         } 
 
@@ -86,7 +79,7 @@ func (s *ServicesStore) GetAllServices(ctx context.Context) ([]types.Services, e
 }
 
 func (s *ServicesStore) GetServiceById(ctx context.Context, ServiceId int64) (*types.Services, error){
-    query := `SELECT id, name, type, modules, image_url, start_date, end_date, created_at, updated_at FROM services WHERE id = $1`
+    query := `SELECT id, name, type, image_url, description, created_at, updated_at FROM services WHERE id = $1`
 
     ctx, cancel := context.WithTimeout(ctx, QueryContextTime)
     defer cancel()
@@ -98,10 +91,8 @@ func (s *ServicesStore) GetServiceById(ctx context.Context, ServiceId int64) (*t
 		&updatedService.ID,
 		&updatedService.Name,
 		&updatedService.Type,
-		pq.Array(&updatedService.Modules),
 		&image.URL,
-		&updatedService.Start,
-		&updatedService.End,
+        &updatedService.Description,
 		&updatedService.CreatedAt,
 		&updatedService.UpdatedAt,
 	); err != nil {
@@ -131,22 +122,13 @@ func (s *ServicesStore) PartialUpdate(ctx context.Context, service *types.Servic
         args = append(args, service.Image.URL)
         counter++
     }
-    if service.Modules != nil {
-        query += fmt.Sprintf("modules = $%d, ", counter)
-        args = append(args, pq.Array(service.Modules))
-        counter++
-    }
-    if service.Start != "" {
-        query += fmt.Sprintf("start_date = $%d, ", counter)
-        args = append(args, service.Start)
-        counter++
-    }
-    if service.End != "" {
-        query += fmt.Sprintf("end_date = $%d, ", counter)
-        args = append(args, service.End)
-        counter++
-    }
 
+    if service.Description != "" {
+        query += fmt.Sprintf("image_url = $%d, ", counter)
+        args = append(args, service.Description)
+        counter++
+    }
+    
     // updated_at sempre
     query += fmt.Sprintf("updated_at = $%d ", counter)
     args = append(args, time.Now())

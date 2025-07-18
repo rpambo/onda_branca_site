@@ -20,17 +20,34 @@ func (app *application) concateUs(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	va := struct{
+	auto := struct{
 		Name	string
 	}{
 		Name: payload.Name,
 	}
 
-	status, err:= app.Mailer.Send(mailer.UserWelcomeTemplate, payload.Email, va);
+	send := struct{
+		Name		string
+		Assunto		string
+		Contacto	string
+		Mensagem	string
+	}{
+		Name: payload.Name,
+		Assunto: payload.Assunto,
+		Contacto: payload.Tel,
+		Mensagem: payload.Messagem,
+	}
+
+	status, err:= app.Mailer.Send(mailer.UserWelcomeTemplate, payload.Email, auto);
 	if err != nil{
 		app.internalServerError(w, r, err)
 		return
 	}
 
-	app.logger.Infow("email send", "status :", status)
+	status2, err := app.Mailer.SendNew(mailer.SendMail, payload.Email, send);
+	if err != nil{
+		app.internalServerError(w, r, err)
+		return
+	}
+	app.logger.Infow("emails sent successfully", "welcome_status", status, "second_status", status2)
 }

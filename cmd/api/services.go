@@ -3,7 +3,6 @@ package main
 import (
 	"bytes"
 	"database/sql"
-	"encoding/json"
 	"errors"
 	"fmt"
 	"io"
@@ -33,24 +32,16 @@ func (app *application) ServicesHandler(w http.ResponseWriter, r *http.Request){
 		Type: r.FormValue("type"),
 		Name:  r.FormValue("name"),
 		Image:     types.Image{},
+		Description: r.FormValue("description"),
 	}
 
-	modulesRaw := r.FormValue("modules")
+	/*modulesRaw := r.FormValue("modules")
 	var modules []string
 	if err := json.Unmarshal([]byte(modulesRaw), &modules); err != nil {
 		app.badRequestResponse(w, r, fmt.Errorf("modules must be a valid JSON array"))
 		return
 	}
-	payload.Modules = modules
-
-    // Campos opcionais de data
-    if start := r.FormValue("start"); start != "" {
-        payload.Start = start
-    }
-
-    if end := r.FormValue("end"); end != "" {
-        payload.End = end
-    }
+	payload.Modules = modules"*/
 
 	// Read uploaded image file
 	file, header, err := r.FormFile("image")
@@ -130,9 +121,7 @@ func (app *application) ServicesHandler(w http.ResponseWriter, r *http.Request){
 		Type: payload.Type,
 		Name:  payload.Name,
 		Image:     payload.Image,
-		Modules: payload.Modules,
-		Start: payload.Start,
-		End: payload.End,
+		Description: payload.Description,
 		CreatedAt: now,
 		UpdatedAt: now,
 	}
@@ -153,12 +142,21 @@ func (app *application) ServicesHandler(w http.ResponseWriter, r *http.Request){
 func (app *application) GetAllServicesHandler(w http.ResponseWriter, r *http.Request){
 
 	ctx := r.Context()
-
-	services, err := app.store.Services.GetAllServices(ctx)
 	
+	services, err := app.cacheStorage.Services.Get(ctx)
 	if  err != nil {
 		app.internalServerError(w, r, err)
 		return
+	}
+
+	if services == nil{
+		services, err = app.store.Services.GetAllServices(ctx)
+		if err != nil{
+			app.internalServerError(w, r, err)
+			return
+		}
+
+		_ = app.cacheStorage.Services.Set(ctx, services)
 	}
 
 	if err := app.jsonResponse(w, http.StatusOK, services); err != nil{
@@ -201,20 +199,17 @@ func (app *application) PartialUpdate(w http.ResponseWriter, r *http.Request) {
 	if v := r.FormValue("name"); v != "" {
 		service.Name = v
 	}
-	if v := r.FormValue("modules"); v != "" {
+	if v := r.FormValue("description"); v != "" {
+		service.Name = v
+	}
+	/*"if v := r.FormValue("modules"); v != "" {
 		var modules []string
 		if err := json.Unmarshal([]byte(v), &modules); err != nil {
 			app.badRequestResponse(w, r, fmt.Errorf("modules must be a valid JSON array"))
 			return
 		}
 		service.Modules = modules
-	}
-	if v := r.FormValue("start"); v != "" {
-		service.Start = v
-	}
-	if v := r.FormValue("end"); v != "" {
-		service.End = v
-	}
+	}"*/
 
 	// Process image upload if present
 	file, header, err := r.FormFile("image")

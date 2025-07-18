@@ -1,0 +1,80 @@
+.header-text {
+  font-size: clamp(18px, 4vw, 32px);
+  font-weight: bold;
+  color: white;
+  margin: 0;
+  line-height: 1.4;
+}
+
+/* Botão principal com transição suave */
+.uk-button-primary {
+  background: linear-gradient(to right, #0067A3, #00507A);
+  color: white;
+  font-weight: bold;
+  border-radius: 30px;
+  padding: 12px 24px;
+  font-size: 16px;
+  transition: all 0.3s ease;
+  border: none;
+}
+
+.uk-button-primary:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  background: linear-gradient(to right, #005c88, #00486e);
+}
+
+/* Cards com sombra e arredondamento */
+.uk-card {
+  border-radius: 20px;
+  transition: all 0.3s ease;
+}
+
+.uk-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+/* Lista de módulos com hover */
+.uk-list li {
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.uk-list li:hover {
+  transform: scale(1.02);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+  background-color: #f5faff;
+}
+
+/* Texto do título com sombra */
+.header-text {
+  color: white;
+  font-size: 40px;
+  font-weight: bold;
+  text-shadow: 2px 2px #005C88;
+}
+
+/* Gradiente de fundo sutil para seções */
+.section-gradient {
+  background: linear-gradient(to bottom, #f0f9ff, #dbefff);
+  border-radius: 20px;
+  padding: 20px;
+}
+
+/* Efeito de sticky visual */
+[uk-sticky] {
+  z-index: 1;
+}
+
+/* Estilo responsivo adicional opcional */
+@media (max-width: 768px) {
+  .uk-button-primary {
+    width: 100%;
+    font-size: 15px;
+  }
+
+  .uk-card {
+    margin-bottom: 20px;
+  }
+}

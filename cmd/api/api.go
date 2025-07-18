@@ -10,10 +10,12 @@ import (
 	"github.com/nedpals/supabase-go"
 	"github.com/rpambo/onda_branca_site/internal/mailer"
 	"github.com/rpambo/onda_branca_site/internal/store"
+	"github.com/rpambo/onda_branca_site/internal/store/cache"
 	"go.uber.org/zap"
 )
 
 type application struct {
+	cacheStorage  cache.Storage
 	config		config
 	store		store.Storage
 	logger		*zap.SugaredLogger
@@ -27,6 +29,14 @@ type config struct {
 	SupabaseURL 	string
     SupabaseKey 	string
 	Mail			mailConfig
+	Redis 			redisConfig
+}
+
+type redisConfig struct{
+	addr			string
+	password		string
+	db				int
+	enable			bool	
 }
 
 type dbConfig struct {
@@ -93,6 +103,12 @@ func (app *application) mount() http.Handler {
 		})
 		r.Route("/contactos", func(r chi.Router) {
 			r.Post("/send", app.concateUs)
+		})
+		r.Route("/training", func(r chi.Router) {
+			r.Post("/create", app.TrainigCreate)
+		})
+		r.Route("/mudoles", func(r chi.Router) {
+			r.Post("/create", app.ModulesCreate)
 		})
 	})
 
