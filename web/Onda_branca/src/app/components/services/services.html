@@ -19,14 +19,14 @@
             <!-- Card 1 -->
             <div>
                 <div class="uk-card uk-card-body uk-box-shadow-medium uk-margin-small-bottom" uk-sticky="offset: 80; bottom: true; media: @l"  style="border-radius: 20px; background-color: white">
-                    <img src="imagens/p7.png" alt="" style="border-radius: 10px;">
+                    <img [src]="trainingDta[0].Service.image.url" alt="" style="border-radius: 10px;">
                     <div class="uk-margin-small-top">
                         <span style="background: linear-gradient(to right, #005C88, #081f47); padding: 5px 10px; color: white; border-radius: 10px; display: inline-block;">
                             <b>Abertura:</b> 10/10/2025
                         </span>
                     </div>
                     <p style="text-align: justify; margin-top: 15px;">
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Impedit atque ipsa, distinctio ullam voluptatem doloremque provident ea delectus, adipisci officia odit rem magni est mollitia? Cupiditate aspernatur molestiae vel eaque?
+                        {{ trainingDta[0].Description }}
                     </p>
                 </div>
             </div>
@@ -38,29 +38,21 @@
                         Módulos do Treinamento
                     </h3>
                     <ul class="uk-list uk-list-divider">
-                        <li class="uk-transition-toggle" style="background-color: white; padding: 20px; border-radius: 20px;"> <span uk-icon="icon: triangle-right;"></span> Módulo 1</li>
-                        <li class="uk-transition-toggle" style="background-color: white; padding: 20px; border-radius: 20px;"><span uk-icon="icon: triangle-right;"></span> Módulo 2</li>
-                        <li class="uk-transition-toggle" style="background-color: white; padding: 20px; border-radius: 20px;"><span uk-icon="icon: triangle-right;"></span> Módulo 3</li>
-                        <li class="uk-transition-toggle" style="background-color: white; padding: 20px; border-radius: 20px;"><span uk-icon="icon: triangle-right;"></span> Módulo 4</li>
-                        <li class="uk-transition-toggle" style="background-color: white; padding: 20px; border-radius: 20px;"><span uk-icon="icon: triangle-right;"></span> Módulo 5</li>
-                        <li class="uk-transition-toggle" style="background-color: white; padding: 20px; border-radius: 20px;"><span uk-icon="icon: triangle-right;"></span> Módulo 6</li>
-                        <li class="uk-transition-toggle" style="background-color: white; padding: 20px; border-radius: 20px;"><span uk-icon="icon: triangle-right;"></span> Módulo 7</li>
-                        <!-- Adicione mais conforme necessário -->
+                        <li *ngFor="let modulo of trainingDta; let i = index" class="uk-transition-toggle" style="background-color: white; padding: 20px; border-radius: 20px;"> <span uk-icon="icon: triangle-right;"></span>  Módulo {{ i + 1 }} - {{ modulo.Title }}</li>
                     </ul>
                 </div>
             </div>
             
-
             <!-- Card 3 -->
             <div>
                 <div class="uk-card uk-card-body uk-box-shadow-large uk-background-muted uk-margin-small-bottom" uk-sticky="offset: 80; bottom: true; media: @l" style="border-radius: 20px; background: linear-gradient(to bottom, #f0f9ff, #dbefff);">
                     <h3 class="uk-text-center" style="font-size: 30px; font-weight: bold; color: #094268; text-transform: uppercase;">
                         Investimento
                     </h3>
-                    <p class="uk-margin-small" style="color: #094268;">Previsão de Lançamento: 31 de Junho</p>
+                    <p class="uk-margin-small" style="color: #094268;">Previsão de Lançamento: {{ trainingDta[0].Training.is_pre_sale }}</p>
                     <p style="margin: 0; color: #094268;">Pré-venda</p>
-                    <p class="uk-margin-small" style="font-size: 30px; font-weight: bold; color: #094268;">500.000,00KZ</p>
-                    <p style="margin: 0; color: #094268; text-decoration: line-through;">1.000.000,00KZ</p>
+                    <p class="uk-margin-small" style="font-size: 30px; font-weight: bold; color: #094268;">{{trainingDta[0].Training.pre_sale_price}}</p>
+                    <p style="margin: 0; color: #094268; text-decoration: line-through;">{{ trainingDta[0].Training.final_price }}KZ</p>
                     <button class="uk-button uk-button-primary uk-margin-small-top" style="background: linear-gradient(to right, #0067A3, #00507A); color: white; font-weight: bold; border-radius: 30px; padding: 12px 24px; font-size: 16px; transition: all 0.3s ease;">
                         INSCREVER-SE
                     </button>

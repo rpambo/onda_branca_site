@@ -13,7 +13,7 @@ type TrainigStore struct {
 
 func (s *TrainigStore) Create(ctx context.Context, training *types.Trainning) error {
 	query := `
-		INSERT INTO trainings (service_id, opening_date, is_pre_sale, pre_sale_price, final_price)
+		INSERT INTO training_details (service_id, opening_date, is_pre_sale, pre_sale_price, final_price)
 		VALUES ($1, $2, $3, $4, $5)
 		RETURNING id, service_id, opening_date, is_pre_sale, pre_sale_price, final_price
 	`

@@ -34,6 +34,7 @@ type Storage struct {
 	}
 	Modules interface{
 		Create(context.Context, *types.Mudules) error
+		GetByIdServices(context.Context,int64) ([]types.ModuleWithDetails, error)
 	}
 }
 
@@ -44,5 +45,6 @@ func NewStorage(db *sql.DB) Storage{
 		Publication: &PublicacaoStore{db},
 		Training: &TrainigStore{db},
 		Modules: &ModulesStore{db},
+
 	}
 }

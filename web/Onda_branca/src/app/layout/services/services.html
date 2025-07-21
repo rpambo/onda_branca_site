@@ -6,7 +6,7 @@
 </div>
 
 <div class="uk-container">
-    <div uk-slider="autoplay: true" class=" uk-position-relative uk-visible-toggle uk-darklight" tabindex="-1">
+    <div uk-slider="autoplay: true" class="uk-position-relative uk-visible-toggle uk-darklight" tabindex="-1">
         <div class="uk-slider-container uk-padding-small" style="overflow: hidden; box-sizing: border-box;">
             <div class="uk-slider-items uk-child-width-1-5@l uk-grid-match uk-child-width-1-2@s ">
                 <div *ngFor="let service of serv">
@@ -15,10 +15,19 @@
                             <img [src]="service.image.url" [alt]="service.name" style="border-radius: 10px;">
                         </div>
                         <div class="uk-card uk-padding-small">
-                            <a href="#" style="color: #094268;">
-                                <span style="font-size: 12px; font-weight: 400;" class="type">{{ service.type }}</span><br>
-                                <span class="texto-com-reticencias">{{ service.name }}</span>
-                            </a>
+                            <ng-container *ngIf="service.type === 'treinamento'; else elseTemplate">
+                                <a [routerLink]="['/treinamento', service.id]"   style="color: #094268;">
+                                    <span style="font-size: 12px; font-weight: 400;" class="type">{{ service.type }}</span><br>
+                                    <span class="texto-com-reticencias">{{ service.name }}</span>
+                                </a>
+                            </ng-container>
+                            <ng-template #elseTemplate>
+                                <a href="#" style="color: #094268;">
+                                    <span style="font-size: 12px; font-weight: 400;" class="type">{{ service.type }}</span><br>
+                                    <span class="texto-com-reticencias">{{ service.name }}</span>
+                                </a>
+                            </ng-template>
+                            
                         </div>
                     </div>
                 </div>

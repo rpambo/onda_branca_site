@@ -1,8 +1,11 @@
 package main
 
 import (
+	"fmt"
 	"net/http"
+	"strconv"
 
+	"github.com/go-chi/chi/v5"
 	"github.com/rpambo/onda_branca_site/types"
 )
 
@@ -42,4 +45,31 @@ func (app *application) ModulesCreate(w http.ResponseWriter, r *http.Request) {
 		app.internalServerError(w, r, err)
 		return
 	}
+}
+
+func (app *application) GeByIdModules(w http.ResponseWriter, r *http.Request){
+	ctx := r.Context()
+	id := chi.URLParam(r, "id")
+	
+	if id == ""{
+		app.badRequestResponse(w, r, fmt.Errorf("missing service id"))
+		return
+	}
+	idService, err := strconv.ParseInt(id, 10, 64)
+	
+	if err != nil{
+		app.internalServerError(w, r, err)
+		return
+	}
+	mudules, err := app.store.Modules.GetByIdServices(ctx, int64(idService))
+
+	if err != nil{
+		app.internalServerError(w, r, err)
+		return
+	}
+
+	if err := app.jsonResponse(w, http.StatusOK, mudules); err != nil{
+		app.internalServerError(w, r, err)
+		return
+	} 
 }

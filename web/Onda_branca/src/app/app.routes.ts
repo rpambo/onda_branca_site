@@ -14,5 +14,5 @@ export const routes: Routes = [
   {path:"publicacao", component: Publicao},
   {path:"contactos", component: Contacto},
   {path:"comunidade", component: Comunidade},
-  {path:"treinamento", component: Services}
+  {path:"treinamento/:id", component: Services}
 ];

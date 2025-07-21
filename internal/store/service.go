@@ -16,7 +16,7 @@ type ServicesStore struct {
 func (s *ServicesStore) Create(ctx context.Context, service *types.Services) error {
     query := `
         INSERT INTO services(type, name, image_url, description, created_at, updated_at)
-        VALUES($1, $2, $3, $4, $5, $6, $7, $8)
+        VALUES($1, $2, $3, $4, $5, $6)
         RETURNING id, type, name, image_url, description, created_at, updated_at
     `
 
@@ -79,7 +79,32 @@ func (s *ServicesStore) GetAllServices(ctx context.Context) ([]types.Services, e
 }
 
 func (s *ServicesStore) GetServiceById(ctx context.Context, ServiceId int64) (*types.Services, error){
-    query := `SELECT id, name, type, image_url, description, created_at, updated_at FROM services WHERE id = $1`
+    query := `SELECT 
+        s.id AS service_id,
+        s.type,
+        s.name,
+        s.image_url,
+        s.description AS service_description,
+        s.created_at,
+        s.updated_at,
+
+        td.id AS training_detail_id,
+        td.opening_date,
+        td.is_pre_sale,
+        td.pre_sale_price,
+        td.final_price,
+
+        tm.id AS module_id,
+        tm.title AS module_title,
+        tm.description AS module_description,
+        tm.order_number
+
+        FROM services s
+        JOIN training_details td ON td.service_id = s.id
+        LEFT JOIN training_modules tm ON tm.training_id = td.service_id
+        WHERE s.id = $1
+        ORDER BY tm.order_number;
+    `
 
     ctx, cancel := context.WithTimeout(ctx, QueryContextTime)
     defer cancel()

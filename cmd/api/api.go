@@ -109,6 +109,7 @@ func (app *application) mount() http.Handler {
 		})
 		r.Route("/mudoles", func(r chi.Router) {
 			r.Post("/create", app.ModulesCreate)
+			r.Get("/get_by_id/{id}", app.GeByIdModules)
 		})
 	})
 

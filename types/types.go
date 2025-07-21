@@ -85,12 +85,22 @@ type Mudules struct{
 	TrainingId		int64	`json:"training_id"`
 	Title			string	`json:"title"`
 	Description		string	`json:"description"`
-	Order_number	string	`json:"order_number"`
+	Order_number	int64	`json:"order_number"`
 }
 
 type ModulesCreate struct{
 	TrainingId		int64	`json:"training_id"`
 	Title			string	`json:"title"`
 	Description		string	`json:"description"`
-	Order_number	string	`json:"order_number"`
+	Order_number	int64	`json:"order_number"`
+}
+
+type ModuleWithDetails struct {
+	ID          int64
+	Title       string
+	Description string
+	OrderNumber int
+	TrainingID  int64
+	Training    Trainning
+	Service     Services
 }
