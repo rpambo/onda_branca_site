@@ -11,6 +11,8 @@ import { RouterModule } from '@angular/router';
   styleUrl: './services.css'
 })
 export class Services {
+  inscritos = 45;
+  vagasTotais = 70;
  serv : Service[] = []
  
  constructor(private ser: Servicos ){}
@@ -25,4 +27,8 @@ export class Services {
       }
     })
  }
+
+  get preenchimentoPercentual(): number {
+    return (this.inscritos / this.vagasTotais) * 100;
+  }
 }

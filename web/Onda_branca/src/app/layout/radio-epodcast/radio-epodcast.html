@@ -1,0 +1,98 @@
+<div class="uk-container uk-padding">
+    <div class="uk-text-center">
+        <h2 style="font-size: 30px; color: #094268; font-weight: bold; margin-bottom: 10px;">
+        Rádio & Podcasts
+        </h2>
+        <p style="font-size: 16px; color: #0067A3;">
+            Ouça nossa programação ao vivo ou explore nossa biblioteca de podcasts<br>
+            sobre saúde mental e produtividade no trabalho.
+        </p>
+    </div>
+    <div class="uk-card uk-card-default uk-card-body" style="border-radius: 15px; background-color: #f4fbff;">
+        <div class="uk-child-width-1-2@l uk-grid">
+            <div>
+                <h3 style="color: #094268; font-weight: bold;">🎧 Rádio Onda Branca</h3>
+                <p style="color: #0067A3;">com Dr. Bernadino</p>
+            </div>
+            <div>   
+                <!-- Barra de progresso -->
+                <input type="range" [value]="currentTime" [max]="duration" (input)="onSeek($event)" style="width: 100%; accent-color: #094268; margin-bottom: 10px;" />
+                <!-- Controles -->
+                <div class="uk-flex uk-flex-between uk-flex-middle">
+                    <button (click)="togglePlay()" class="uk-button uk-button-primary" style="border-radius: 10px;">
+                    {{ isPlaying ? '⏸️ Pause' : '▶️ Play' }}
+                    </button>
+
+                    <input type="range" min="0" max="1" step="0.01" [value]="volume" (input)="onVolumeChange($event)" style="width: 100px;" />
+                </div>
+
+                <!-- Áudio oculto -->
+                <audio #audioRef (timeupdate)="onTimeUpdate()" (loadedmetadata)="onMetadataLoaded()">
+                    <source src="audio/bored-377671.mp3" type="audio/mpeg" />
+                    Seu navegador não suporta áudio.
+                </audio>
+            </div>
+        </div>    
+    </div>
+</div>
+
+<div class="uk-container">
+  <!-- Bloco com fundo azul -->
+  <div
+    style="max-width: 400px; background-color: rgba(212, 212, 212, 0.443); border-radius: 10px; padding: 10px;"
+    class="uk-align-center uk-text-center"
+  >
+    <div class="uk-child-width-1-2@s uk-grid-small uk-grid">
+      <div>
+        <button
+          class="uk-button uk-button-small"
+          [ngClass]="{
+            'uk-button-secondary': selectedTab === 'radio',
+            'uk-button-default': selectedTab !== 'radio'
+          }"
+          (click)="selectTab('radio')"
+          style="width: 100%; border-radius: 8px; font-weight: bold;"
+        >
+          Rádio ao vivo
+        </button>
+      </div>
+      <div>
+        <button
+          class="uk-button uk-button-small"
+          [ngClass]="{
+            'uk-button-secondary': selectedTab === 'podcast',
+            'uk-button-default': selectedTab !== 'podcast'
+          }"
+          (click)="selectTab('podcast')"
+          style="width: 100%; border-radius: 8px; font-weight: bold;"
+        >
+          Podcast
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Cards -->
+  <div class="uk-margin-top uk-align-center">
+    <!-- Rádio -->
+    <div *ngIf="selectedTab === 'radio'" class="uk-card uk-card-default uk-card-body" style="border-radius: 10px;">
+      <div class="uk-child-width-1-3@l uk-grid">
+        <div>
+            <div class="uk-card uk-card-default uk-card-body">
+
+            </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Podcast -->
+    <div *ngIf="selectedTab === 'podcast'" class="uk-card uk-card-default uk-card-body" style="border-radius: 10px;">
+      <h3 class="uk-card-title">🎙️ Podcast</h3>
+      <p>Explore nossa biblioteca de episódios sobre produtividade no trabalho.</p>
+      <ul class="uk-list uk-list-divider">
+        <li>🎧 Episódio 01: Ansiedade no ambiente de trabalho</li>
+        <li>🎧 Episódio 02: Meditação guiada</li>
+      </ul>
+    </div>
+  </div>
+</div>

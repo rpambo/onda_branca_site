@@ -7,10 +7,11 @@ import { Meta, Title } from '@angular/platform-browser';
 import { Services } from '../../layout/services/services';
 import { Testemunhos } from '../../layout/testemunhos/testemunhos';
 import { Publicacao } from '../../layout/publicacao/publicacao';
+import { RadioEpodcast } from "../../layout/radio-epodcast/radio-epodcast";
 
 @Component({
   selector: 'app-home',
-  imports: [Navbar, Slides, About, Footer, Services, Testemunhos, Publicacao],
+  imports: [Navbar, Slides, About, Footer, Services, Publicacao, RadioEpodcast],
   templateUrl: './home.html',
   styleUrl: './home.css'
 })
