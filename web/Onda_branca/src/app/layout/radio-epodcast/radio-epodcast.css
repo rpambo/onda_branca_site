@@ -1,0 +1,15 @@
+.back{
+    background: linear-gradient(to right, #f4fbff, #9a74a10e);
+}
+
+.uk-grid-divider > :nth-child(2)::before {
+  border-color: #a9defd;
+  }
+
+ .link-podcast {
+  transition: transform 0.3s ease;
+}
+
+.link-podcast:hover {
+  transform: scale(1.1); /* aumenta 10% */
+}

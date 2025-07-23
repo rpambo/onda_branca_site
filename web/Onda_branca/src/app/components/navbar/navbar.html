@@ -1,4 +1,4 @@
-<div class="custom-navbar uk-navbar-container uk-navbar-transparent"  [ngClass]="{ 'scrolled': scrolled }">
+<div class="custom-navbar uk-navbar-container"  [ngClass]="{ 'scrolled': scrolled }">
   <div class="uk-container">
     <nav class="uk-navbar">
     <div class="uk-navbar-left">
@@ -14,8 +14,9 @@
       <ul class="uk-navbar-nav" uk-scrollspy-nav="closest: li; scroll: true">
         
         <li [class.uk-active]="activeSection === 'sobre'"><a [routerLink]="['/sobre']" (click)="setActive('sobre')">Sobre nós</a></li>
-        <li [class.uk-active]="activeSection === 'servico'"><a href="/onda/#servico" uk-scroll (click)="setActive('servico')">Serviços</a></li>
-        <li [class.uk-active]="activeSection === 'testemunho'"><a href="/onda/#testemunho" uk-scroll (click)="setActive('testemunho')">Testemunhos</a></li>
+        <li [class.uk-active]="activeSection === 'bem-estar'"><a href="#bem-estar" (click)="setActive('bem-estar')">Bem-estar</a></li>
+        <li [class.uk-active]="activeSection === 'treinamentos'"><a href="#treinamentos" uk-scroll (click)="setActive('treinamentos')">Treinamentos</a></li>
+        <li [class.uk-active]="activeSection === 'radio'"><a href="#radio" uk-scroll (click)="setActive('radio')">Rádio & Podcast</a></li>
         <li [class.uk-active]="activeSection === 'publicacao'"><a [routerLink]="['/publicacao']" (click)="setActive('publicacao')">Publicações</a></li>
         <li [class.uk-active]="activeSection === 'comunidade'"><a [routerLink]="['/comunidade']" (click)="setActive('comunidade')">Comunidade</a></li>
       </ul>

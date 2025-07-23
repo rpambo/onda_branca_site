@@ -33,8 +33,12 @@ export class Navbar {
           this.activeSection = 'home';
         } else if (url.startsWith('/sobre')) {
           this.activeSection = 'sobre';
-        } else if (url.includes('servico')) {
-          this.activeSection = 'servico';
+        } else if (url.includes('radio')) {
+          this.activeSection = 'radio';
+        } else if (url.includes('treinamentos')) {
+          this.activeSection = 'treinamentos';
+        } else if (url.includes('bem-estar')){
+          this.activeSection = 'bem-estar';
         } else if (url.includes('testemunho')) {
           this.activeSection = 'testemunho';
         } else if (url.includes('/publicacao')) {

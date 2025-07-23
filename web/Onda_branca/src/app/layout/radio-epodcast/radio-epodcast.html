@@ -1,4 +1,5 @@
-<div class="uk-container uk-padding">
+<div class="back">
+  <div class="uk-container uk-padding" id="radio">
     <div class="uk-text-center">
         <h2 style="font-size: 30px; color: #094268; font-weight: bold; margin-bottom: 10px;">
         Rádio & Podcasts
@@ -8,7 +9,7 @@
             sobre saúde mental e produtividade no trabalho.
         </p>
     </div>
-    <div class="uk-card uk-card-default uk-card-body" style="border-radius: 15px; background-color: #f4fbff;">
+    <div class="uk-card uk-card-default uk-card-body" style="border-radius: 15px; background: linear-gradient(to right,#f4fbff, #9a74a10e);">
         <div class="uk-child-width-1-2@l uk-grid">
             <div>
                 <h3 style="color: #094268; font-weight: bold;">🎧 Rádio Onda Branca</h3>
@@ -39,15 +40,16 @@
 <div class="uk-container">
   <!-- Bloco com fundo azul -->
   <div
-    style="max-width: 400px; background-color: rgba(212, 212, 212, 0.443); border-radius: 10px; padding: 10px;"
+    style="z-index: 1; max-width: 400px; background-color: rgba(212, 212, 212, 0.443); border-radius: 10px; padding: 10px;"
     class="uk-align-center uk-text-center"
+    uk-sticky="offset: 100; bottom: true; media: @l; cls-active: uk-align-right"
   >
     <div class="uk-child-width-1-2@s uk-grid-small uk-grid">
       <div>
         <button
           class="uk-button uk-button-small"
           [ngClass]="{
-            'uk-button-secondary': selectedTab === 'radio',
+            'uk-button-primary': selectedTab === 'radio',
             'uk-button-default': selectedTab !== 'radio'
           }"
           (click)="selectTab('radio')"
@@ -60,7 +62,7 @@
         <button
           class="uk-button uk-button-small"
           [ngClass]="{
-            'uk-button-secondary': selectedTab === 'podcast',
+            'uk-button-primary': selectedTab === 'podcast',
             'uk-button-default': selectedTab !== 'podcast'
           }"
           (click)="selectTab('podcast')"
@@ -71,28 +73,206 @@
       </div>
     </div>
   </div>
+    <div class="uk-margin-top uk-align-center uk-margin-medium-bottom">
+      <!-- Rádio -->
+      <div *ngIf="selectedTab === 'radio'" class="uk-card uk-card-default uk-card-body" style="border-radius: 20px;">
+        <div class="uk-grid uk-flex uk-flex-between uk-flex-middle uk-padding" style="background: linear-gradient(to right, #017fc7e8, #9a74a1); margin-top: -39px !important; margin-right: -39px; border-top-left-radius: 20px; border-top-right-radius:20px">
+      
+          <!-- LADO ESQUERDO -->
+          <div class="uk-flex uk-flex-middle" style="margin-left: -50px;">
+            <div>
+            <img width="60" src="imagens/radio.svg" style="filter: brightness(0) invert(1); background-color: #c4e9ff34; border-radius: 50px; padding: 10px;" alt="imagem de onda de radio">
+          </div>
+          <div style="margin-left: 10px;">
+            <h3 style="margin: 0 !important; color: white; font-weight: bold;">Onda Branca</h3>
+            <span style="color: white;">Rádio</span>
+          </div>
+        </div>
 
-  <!-- Cards -->
-  <div class="uk-margin-top uk-align-center">
-    <!-- Rádio -->
-    <div *ngIf="selectedTab === 'radio'" class="uk-card uk-card-default uk-card-body" style="border-radius: 10px;">
-      <div class="uk-child-width-1-3@l uk-grid">
+        <!-- LADO DIREITO -->
+        <div class="uk-flex uk-flex-middle uk-flex-wrap">
+          <span style="background-color: #ebb9f44f; color: white; border: solid 1px rgba(255, 255, 255, 0.244);border-radius: 10px; padding: 5px 3px 5px 3px; margin-right: 10px; text-transform: uppercase; font-size: 10px;">ao vivo</span>
+          <div>
+            <div style="color: white; font-size: 16px; font-weight: bold;">📻 FM 104.7</div>
+            <div style="color: white; font-size: 16px;">ondabranca.ao.co</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="uk-child-width-1-2@l uk-grid uk-grid-divider uk-grid">
         <div>
-            <div class="uk-card uk-card-default uk-card-body">
-
+          <h4 style="font-size: 30px; color: #094268; font-weight: bold;">Saúde Mental & Produtividade no Trabalho</h4>
+          <p style="font-size: 16px; color: #0067A3;">Descubra estratégias práticas para manter o equilíbrio entre bem-estar mental e alta performance profissional no ambiente corporativo moderno.</p>
+        
+          <div class="uk-flex uk-flex-middle" style="background: linear-gradient(to right, #f4fbff, #9a74a131); border-radius: 20px; padding: 20px;">
+            <div>
+              <span class="uk-icon uk-padding-small" uk-icon="icon: user; ratio: 2" style="background: linear-gradient(to right, #017fc7e8, #9a74a1); border-radius: 50px; color: white !important;"></span>
             </div>
+            <div style="margin-left: 10px;">
+              <h3 style="margin: 0 !important; color: #094268; font-weight: bold; font-size: 20px;">Dr. Bernardino</h3>
+              <span style="color: #0067A3; font-size: 14px;">Especialista em Psicologia  Organizacional</span><br>
+              <span style="color: #0067A3; font-weight: 300; font-size: 14px;">CRP 06/12345 • Doutor em Psicologia  do Trabalho</span>
+            </div>
+          </div>
+        
+          <div class="uk-child-width-1-2@l uk-flex uk-margin-small">
+            <div class="uk-flex uk-flex-middle" style="background-color: #f4fbff; border-radius: 20px; padding: 15px;">
+              <div>
+                <span class="uk-icon" uk-icon="icon: calendar" style="color: #094268;"></span>
+              </div>
+                <div class="uk-margin-small-left">
+                  <span style="font-size: 14px; color: #094268;"><b>Data</b> <br> Todas as quartas</span>
+                </div>
+              </div>
+              <div class="uk-flex uk-flex-middle uk-margin-large-left" style="background-color: #9a74a131; padding: 15px; border-radius: 20px;">
+                <div>
+                  <span class="uk-icon" uk-icon="icon: clock" style="color: #9a74a1;"></span>
+                </div>
+                <div class="uk-margin-small-left">
+                  <span style="font-size: 14px; color: #094268;"><b>Horário</b> <br>19h às 20h</span>
+                </div>
+              </div>
+            </div>
+          </div>
+      
+          <div>
+            <h4 class="uk-text-center" style="font-size: 16px; color: #094268;">Tema abordados</h4>
+            <div class="uk-child-width-1-2@l uk-grid">
+              <div>
+                <ul class="uk-list">
+                  <li style="background-color: #c9e9fc4b; padding: 10px; border-radius: 20px; color: #094268; font-size: 14px; font-weight: 500;"> <span class="uk-icon" uk-icon="icon: triangle-right" style="color: #9a74a1;"></span>Gestão do Estresse</li>
+                  <li style="background-color: #c9e9fc4b; padding: 10px; border-radius: 20px; color: #094268; font-size: 14px; font-weight: 500;"> <span class="uk-icon" uk-icon="icon: triangle-right" style="color: #9a74a1;"></span> Equilíbrio Vida-Trabalho</li>
+                  <li style="background-color: #c9e9fc4b; padding: 10px; border-radius: 20px; color: #094268; font-size: 14px; font-weight: 500;"> <span class="uk-icon" uk-icon="icon: triangle-right" style="color: #9a74a1;"></span>Comunicação Assertiva</li>
+                </ul>
+              </div>
+              <div>
+                <ul class="uk-list">
+                  <li style="background-color: #c9e9fc4b; padding: 10px; border-radius: 20px; color: #094268; font-size: 14px; font-weight: 500;"> <span class="uk-icon" uk-icon="icon: triangle-right" style="color: #9a74a1;"></span>Gestão do Estresse</li>
+                  <li style="background-color: #c9e9fc4b; padding: 10px; border-radius: 20px; color: #094268; font-size: 14px; font-weight: 500;"> <span class="uk-icon" uk-icon="icon: triangle-right" style="color: #9a74a1;"></span> Equilíbrio Vida-Trabalho</li>
+                  <li style="background-color: #c9e9fc4b; padding: 10px; border-radius: 20px; color: #094268; font-size: 14px; font-weight: 500;"> <span class="uk-icon" uk-icon="icon: triangle-right" style="color: #9a74a1;"></span>Comunicação Assertiva</li>
+                </ul>
+              </div>
+            </div>
+            <div class="uk-card uk-card-body uk-card-default uk-margin-medium-top" style="border-radius: 20px; background: linear-gradient(to right, #017fc7e8, #9a74a1);">
+              <h4 class="uk-text-center uk-card-title" style="font-size: 20px; font-weight: bold; color: white;">Sintonize Agora!</h4>
+              <p class="uk-text-center" style="font-size: 14px; color: white;">Transforme sua relação com o trabalho e cuide da sua mente. Participe desta jornada de autoconhecimento e desenvolvimento profissional.</p>
+              <div class="uk-card uk-card-body uk-card-default" style="background: linear-gradient(to right, #0196ec42, #dca6e642); border-radius: 20px;">
+                <h4 class="uk-text-center uk-card-title" style="font-size: 20px; font-weight: bold; color: white;">🎙️ Toda Quarta-feira às 19h</h4>
+                <p class="uk-text-center" style="font-size: 14px; color: white;">Não perca!</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div  style="margin-bottom: -40px; margin-left: -40px; margin-right: -40px; border-bottom-left-radius: 20px; border-bottom-right-radius: 20px; padding: 20px; margin-top: 20px; background-color: #8c9ea90e;">
+          <p style="margin: 0 !important; font-size: 14px; color: #0067A3;" class="uk-text-center">Programa educativo • Não substitui acompanhamento profissional • Para dúvidas e sugestões: contato&#64;ondabranca.ao</p>
+        </div>
+      </div>
+
+    </div>
+    <!-- Podcast -->
+    <div *ngIf="selectedTab === 'podcast'" class="uk-card uk-card-default uk-card-body uk-margin-medium-bottom" style="border-radius: 20px;">
+      <div class="uk-grid uk-flex uk-flex-between uk-flex-middle uk-padding" style="background: linear-gradient(to right, #017fc7e8, #9a74a1); margin-top: -39px !important; margin-right: -39px; border-top-left-radius: 20px; border-top-right-radius:20px">
+      
+        <!-- LADO ESQUERDO -->
+        <div class="uk-flex uk-flex-middle" style="margin-left: -50px;">
+          <div>
+            <img width="60" src="imagens/podcast.svg" style="filter: brightness(0) invert(1); background-color: #c4e9ff34; border-radius: 50px; padding: 10px;" alt="imagem de onda de radio">
+          </div>
+          <div style="margin-left: 10px;">
+            <h3 style="margin: 0 !important; color: white; font-weight: bold;">Onda Branca</h3>
+            <span style="color: white;">Podcast</span>
+          </div>
+        </div>
+        <!-- LADO DIREITO -->
+      <div class="uk-flex uk-flex-middle uk-flex-wrap">
+        <a href="#" target="_blank" class="link-podcast" style="text-decoration: none; background-color: #ebb9f44f; color: white; border: solid 1px rgba(255, 255, 255, 0.244);border-radius: 10px; padding: 5px 3px 5px 3px; margin-right: 10px; text-transform: uppercase; font-size: 10px;"><span class="uk-icon" uk-icon="icon: play"></span> NOVO EPISÓDIO</a>
+        <div>
+          <div style="color: white; font-size: 16px; font-weight: bold;">Disponível na Youtub e Spotify</div>
+          <div style="color: white; font-size: 16px;">Onda Branca</div>
         </div>
       </div>
     </div>
+    <div class="uk-child-width-1-2@l uk-grid uk-grid-divider uk-grid">
+        <div>
+          <h4 style="font-size: 30px; color: #094268; font-weight: bold;">Saúde Mental & Produtividade no Trabalho</h4>
+          <p style="font-size: 16px; color: #0067A3;">Episódios semanais com estratégias práticas para manter o equilíbrio entre bem-estar mental e alta performance profissional no ambiente corporativo moderno.</p>
+        
+          <div class="uk-flex uk-flex-middle" style="background: linear-gradient(to right, #f4fbff, #9a74a131); border-radius: 20px; padding: 20px;">
+            <div style="">
+              <span class="uk-icon uk-padding-small" uk-icon="icon: user; ratio: 2" style="background: linear-gradient(to right, #017fc7e8, #9a74a1); border-radius: 50px; color: white !important;"></span>
+            </div>
+            <div style="margin-left: 10px;">
+              <h3 style="margin: 0 !important; color: #094268; font-weight: bold; font-size: 20px;">Dr. Bernardino</h3>
+              <span style="color: #0067A3; font-size: 14px;">Especialista em Psicologia  Organizacional</span><br>
+              <span style="color: #0067A3; font-weight: 300; font-size: 14px;">CRP 06/12345 • Doutor em Psicologia  do Trabalho</span>
+            </div>
+          </div>
+        
+          <div class="uk-child-width-1-2@l uk-flex uk-margin-small">
+            <div class="uk-flex uk-flex-middle" style="background-color: #f4fbff; border-radius: 20px; padding: 15px;">
+              <div>
+                <span class="uk-icon" uk-icon="icon: calendar" style="color: #094268;"></span>
+              </div>
+                <div class="uk-margin-small-left">
+                  <span style="font-size: 14px; color: #094268;"><b>Lançamento</b> <br> Todas as quartas</span>
+                </div>
+              </div>
+              <div class="uk-flex uk-flex-middle uk-margin-large-left" style="background-color: #9a74a131; padding: 15px; border-radius: 20px;">
+                <div>
+                  <span class="uk-icon" uk-icon="icon: clock" style="color: #9a74a1;"></span>
+                </div>
+                <div class="uk-margin-small-left">
+                  <span style="font-size: 14px; color: #094268;"><b>Duração</b> <br>45-60 min</span>
+                </div>
+              </div>
+            </div>
+          </div>
+      
+          <div>
+            <h4 class="uk-text-center" style="font-size: 16px; color: #094268;">Temas dos Episódios</h4>
+            <div class="uk-child-width-1-2@l uk-grid">
+              <div>
+                <ul class="uk-list">
+                  <li style="background-color: #c9e9fc4b; padding: 10px; border-radius: 20px; color: #094268; font-size: 14px; font-weight: 500;"> <span class="uk-icon" uk-icon="icon: triangle-right" style="color: #9a74a1;"></span>Gestão do Estresse</li>
+                  <li style="background-color: #c9e9fc4b; padding: 10px; border-radius: 20px; color: #094268; font-size: 14px; font-weight: 500;"> <span class="uk-icon" uk-icon="icon: triangle-right" style="color: #9a74a1;"></span> Equilíbrio Vida-Trabalho</li>
+                  <li style="background-color: #c9e9fc4b; padding: 10px; border-radius: 20px; color: #094268; font-size: 14px; font-weight: 500;"> <span class="uk-icon" uk-icon="icon: triangle-right" style="color: #9a74a1;"></span>Comunicação Assertiva</li>
+                </ul>
+              </div>
+              <div>
+                <ul class="uk-list">
+                  <li style="background-color: #c9e9fc4b; padding: 10px; border-radius: 20px; color: #094268; font-size: 14px; font-weight: 500;"> <span class="uk-icon" uk-icon="icon: triangle-right" style="color: #9a74a1;"></span>Síndrome de Burnout</li>
+                  <li style="background-color: #c9e9fc4b; padding: 10px; border-radius: 20px; color: #094268; font-size: 14px; font-weight: 500;"> <span class="uk-icon" uk-icon="icon: triangle-right" style="color: #9a74a1;"></span> Mindfulness Corporativo</li>
+                  <li style="background-color: #c9e9fc4b; padding: 10px; border-radius: 20px; color: #094268; font-size: 14px; font-weight: 500;"> <span class="uk-icon" uk-icon="icon: triangle-right" style="color: #9a74a1;"></span>Liderança Saudável</li>
+                </ul>
+              </div>
+            </div>
+            <div>
+              <h4 class="uk-text-center uk-margin-medium-top" style="font-size: 16px; color: #094268;">Ouça nas plataformas:</h4>
+              <div class="uk-child-width-1-2@l uk-flex uk-flex-middle uk-align-center uk-text-center">
+                <div>
+                  <a href="#" target="_blank" style="background-color: #c9e9fc4b; padding: 8px 30px 8px 30px; border-radius: 10px; color: #094268; font-size: 14px; font-weight: 500;">Spotify</a>
+                </div>
+                <div>
+                  <a  href="#" target="_blank" style="background-color: #c9e9fc4b; padding: 8px 30px 8px 30px; border-radius: 10px; color: #094268; font-size: 14px; font-weight: 500;">YouTube</a>
+                </div>
+              </div>
+            </div>
+            <div class="uk-card uk-card-body uk-card-default uk-margin-medium-top" style="border-radius: 20px; background: linear-gradient(to right, #017fc7e8, #9a74a1);">
+              <h4 class="uk-text-center uk-card-title" style="font-size: 20px; font-weight: bold; color: white;">Escute Agora!</h4>
+              <p class="uk-text-center" style="font-size: 14px; color: white;">Transforme sua relação com o trabalho através de conversas profundas sobre saúde mental e produtividade.</p>
+              <div class="link-podcast" style="background: linear-gradient(to right, #0196ec42, #dca6e642); border-radius: 20px;">
+                <a href="#" target="_blank" style="text-decoration: none;">
+                  <h4 class="uk-text-center" style="font-size: 20px; font-weight: bold; color: white; margin: 0 !important;"><span class="uk-class" uk-icon="icon: play; ratio: 2"></span> Episódios Semanais</h4>
+                  <p class="uk-text-center" style="font-size: 16px; color: white; margin: 0;">Subscribe & Bell! 🔔</p>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div  style="margin-bottom: -40px; margin-left: -40px; margin-right: -40px; border-bottom-left-radius: 20px; border-bottom-right-radius: 20px; padding: 20px; margin-top: 20px; background-color: #8c9ea90e;">
+          <p style="margin: 0 !important; font-size: 14px; color: #0067A3;" class="uk-text-center">Programa educativo • Não substitui acompanhamento profissional • Para dúvidas e sugestões: contato&#64;ondabranca.ao</p>
+        </div>
+      </div>
+</div>
 
-    <!-- Podcast -->
-    <div *ngIf="selectedTab === 'podcast'" class="uk-card uk-card-default uk-card-body" style="border-radius: 10px;">
-      <h3 class="uk-card-title">🎙️ Podcast</h3>
-      <p>Explore nossa biblioteca de episódios sobre produtividade no trabalho.</p>
-      <ul class="uk-list uk-list-divider">
-        <li>🎧 Episódio 01: Ansiedade no ambiente de trabalho</li>
-        <li>🎧 Episódio 02: Meditação guiada</li>
-      </ul>
-    </div>
-  </div>
 </div>

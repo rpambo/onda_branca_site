@@ -1,3 +1,32 @@
+.back{
+    background: linear-gradient(to right, #f4fbff, #9a74a10e);
+}
+.gradient-text{
+  background: linear-gradient(to right, #094268, #9B73A3);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text; /* para navegadores modernos */
+  color: transparent;
+}
+
+.arrow-down {
+  display: inline-block;
+  color: #094268;
+  animation: bounce 1.5s infinite ease-in-out;
+}
+
+@keyframes bounce {
+  0%, 100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  50% {
+    transform: translateY(10px);
+    opacity: 0.5;
+  }
+}
+
+
 .circle-lilas {
   background-color: #7B5D8110 !important;
 }

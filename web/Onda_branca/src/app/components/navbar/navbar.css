@@ -1,9 +1,3 @@
-/* Navbar transparente inicial */
-.uk-navbar-transparent {
-  background-color: transparent !important;
-  transition: background-color 0.3s ease-in-out;
-}
-
 /* Estilos existentes que você já tem */
 .uk-navbar-center{
   background-color: rgba(128, 128, 128, 0.055);
@@ -37,7 +31,7 @@ button:hover{
   left: 0;
   right: 0;
   z-index: 99;
-  background-color: transparent !important;
+  background-color: transparent;
   backdrop-filter: blur(0px);
   -webkit-backdrop-filter: blur(0px);
   transition: all 0.3s ease-in-out;
