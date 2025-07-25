@@ -3,6 +3,7 @@ import { Teachers } from '../../interfaces';
 import { Teacher } from '../../services/teacher';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
+import { Statics } from "../statics/statics";
 
 @Component({
   selector: 'app-about',
@@ -18,14 +19,5 @@ export class About {
   ngOnInit(): void {
     //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
     //Add 'implements OnInit' to the class.
-
-    this.teacherServices.getAllTeachers().subscribe({
-      next: (res) => {
-        this.teachers = res;
-      },
-      error: (err) =>{
-        console.error(err)
-      }
-    })
   }
 }

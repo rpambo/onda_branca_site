@@ -1,0 +1,20 @@
+.back {
+  background: linear-gradient(to right, #f4fbff, white);
+}
+
+.back-card{
+    background: linear-gradient(to right, #f4fbff, #9a74a10e);
+}
+
+.back-card-span{
+    background: linear-gradient(to right,#9a74a1d0, #9a74a10e);
+}
+
+.uk-card{
+    transition: all 0.3s ease;
+}
+
+.uk-card:hover{
+    transform: translate3d(2px, -4px, -10px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}

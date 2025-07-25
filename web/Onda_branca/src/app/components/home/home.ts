@@ -5,13 +5,14 @@ import { About } from "../../layout/about/about";
 import { Footer } from '../../layout/footer/footer';
 import { Meta, Title } from '@angular/platform-browser';
 import { Services } from '../../layout/services/services';
-import { Testemunhos } from '../../layout/testemunhos/testemunhos';
 import { Publicacao } from '../../layout/publicacao/publicacao';
 import { RadioEpodcast } from "../../layout/radio-epodcast/radio-epodcast";
+import { Statics } from '../../layout/statics/statics';
+import { Bemestar } from "../../layout/bemestar/bemestar";
 
 @Component({
   selector: 'app-home',
-  imports: [Navbar, Slides, About, Footer, Services, Publicacao, RadioEpodcast],
+  imports: [Navbar, Slides, About, Footer, Services, Publicacao, RadioEpodcast, Statics, Bemestar],
   templateUrl: './home.html',
   styleUrl: './home.css'
 })

@@ -1,6 +1,6 @@
 .texto-com-reticencias {
   display: -webkit-box;
-  -webkit-line-clamp: 2; /* Limita a 2 linhas */
+  -webkit-line-clamp: 3; /* Limita a 2 linhas */
   -webkit-box-orient: vertical;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -13,45 +13,24 @@
   font-weight: 600;
 }
 
-.uk-slidenav-previous,
-.uk-slidenav-next {
-  z-index: 1000;
-  color: #072132 !important; /* ou #fff para fundo escuro */
+.back{
+    background: linear-gradient(to right, #f4fbff, #9a74a10e);
 }
 
-img {
-  width: 100% !important;
-  height: auto !important;
-  object-fit: cover !important; /* ou contain, dependendo do efeito desejado */
+.uk-card {
+  transition: all 0.3s ease;
 }
 
-.uk-position-center-left-out, .uk-position-center-right-out {
-    color: #9A74A1 !important;
+.uk-card:hover{
+  transform: rotateX(5deg) rotateY(5deg) scale(1.03);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
 }
 
-@media (max-width: 760px) {
-  .uk-grid > div {
-    padding: 10px;
-    width: 100%;
-  }
+.uk-button {
+  transition: all 0.3s ease;
+}
 
-  .type{
-    font-size: 1rem !important;
-  }
-  .texto-com-reticencias{
-    font-size: 1.2rem !important;
-  }
-
-  .title {
-    font-size: 23px !important;
-  }
-  p{
-    text-align: justify;
-  }
-
-  img {
-    width: 100% !important;
-    height: auto !important;
-    aspect-ratio: 1.75 !important; /* igual à proporção original */
-  }
+.uk-button:hover{
+  transform: scale(1.05);
+  background-color: #9a74a1 !important;
 }

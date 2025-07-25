@@ -8,14 +8,14 @@ import { Teachers } from '../interfaces';
 })
 export class Teacher {
 
-  private UrlS = 'https://ondabrancasite-env.up.railway.app/v1/teacher/get_all_teachers'
+ // private UrlS = 'https://ondabrancasite-env.up.railway.app/v1/teacher/get_all_teachers'
 
   constructor(private http: HttpClient) { }
 
-  getAllTeachers(): Observable<Teachers[]> {
-  return this.http.get<{ data: Teachers[] }>(this.UrlS).pipe(
-    map(res => res.data) // Extract array from response
-  );
-}
+  //getAllTeachers(): Observable<Teachers[]> {
+  //return this.http.get<{ data: Teachers[] }>(this.UrlS).pipe(
+    //map(res => res.data) // Extract array from response
+  //);
+//}
 
 }

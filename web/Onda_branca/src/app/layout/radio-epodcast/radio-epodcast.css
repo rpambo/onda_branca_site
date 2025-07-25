@@ -1,10 +1,29 @@
-.back{
-    background: linear-gradient(to right, #f4fbff, #9a74a10e);
+.uk-card {
+  transition: all 0.3s ease;
 }
 
+.uk-card:hover{
+  transform: rotateX(5deg) rotateY(5deg) scale(1.03);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.uk-button{
+  transition: all 0.3s ease;
+}
+
+.uk-button:hover{
+  transform: scale(1.09);
+  background-color: #9B73A3 !important;
+  color: white !important;
+}
+
+.back{
+    background: linear-gradient(to right, #f4fbff, white);
+}
 .uk-grid-divider > :nth-child(2)::before {
   border-color: #a9defd;
   }
+
 
  .link-podcast {
   transition: transform 0.3s ease;

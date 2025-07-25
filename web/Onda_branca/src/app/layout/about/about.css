@@ -1,35 +1,21 @@
-p, span {
-    color: #012C42;
+.back {
+  background: linear-gradient(to right, #f4fbff, white);
+}
+.uk-button-pri{
+  transition: all 0.3s ease;
+}
+.uk-button-seg{
+  transition: all 0.3s ease;
 }
 
-button:hover{
-  background-color: #9A74A1 !important;
-  color: #EBE3EC !important;
+.uk-button-seg:hover{
+  transform: scale(1.09);
+  background-color: #094268 !important;
+  color: white !important;
 }
 
-.uk-slidenav-previous,
-.uk-slidenav-next {
-  z-index: 1000;
-  color: #072132 !important; /* ou #fff para fundo escuro */
+.uk-button-pri:hover{
+  transform: scale(1.09);
+  background-color: #9B73A3 !important;
 }
 
-.uk-position-center-left-out, .uk-position-center-right-out {
-    color: #9A74A1 !important;
-}
-
-
-@media (max-width: 768px) {
-  .title{
-    margin-top: 10px !important;
-  }
-
-  .destaque{
-    margin-bottom: 20px;
-  }
-  .title{
-    font-size: 23px !important;
-  }
-  p{
-    text-align: justify;
-  }
-}
