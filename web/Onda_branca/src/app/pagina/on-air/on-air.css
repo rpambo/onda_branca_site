@@ -1,0 +1,12 @@
+.hero{
+    background-image: url("/onda/imagens/onair.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.uk-list-hyphe > li::before {
+  content: "—"; /* em vez de hífen curto, usa travessão longo */
+  font-size: 25px; /* aumenta o tamanho do símbolo */
+  margin-right: 12px; /* espaço entre o traço e o texto */
+}

@@ -1,0 +1,11 @@
+.missao{
+    background-image: url(/imagens/missao.png);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100%;
+}
+
+.uk-list-divider > :nth-child(n+2) {
+    border-top-color: #fe87f8; /* Replace with your desired color */
+}

@@ -1,0 +1,58 @@
+.titulo-principal {
+  font-size: 16px;
+  color: #094268;
+  font-weight: 300;
+  text-transform: uppercase;
+  position: relative;
+  display: inline-block;
+}
+
+@keyframes grow {
+    from { width: 20%; }
+    to { width: 80%; }
+}
+
+.titulo-principal .linha {
+  content: '';
+  position: absolute;
+  bottom: -3px;
+  left: 0;
+  width: 50%;
+  height: 3px;
+  background: linear-gradient(90deg, #00aaff, #0d5a90);
+  display: block;
+  animation: grow 2s infinite alternate;
+}
+
+.titulo-metricas{
+  max-width: 550px;
+}
+
+@keyframes growMobile {
+  from { width: 0; }
+  to { width: 25%; }
+}
+
+@media (max-width: 768px) {
+    .uk-background-cover {
+    height: 200px !important; /* ajusta conforme o design */
+    background-position: initial;
+    border-radius: 10px;
+    margin-bottom: 0;
+  }
+  p, li{
+    font-size: 16px;
+    text-align: left;
+  }
+  .titulo-principal{
+    display: block;
+  }
+  h2, .destaque{
+    font-size: 1.6rem !important;
+  }
+
+  .titulo-principal .linha{
+    width: 25%;
+    animation: growMobile 2s infinite alternate;
+  }
+}

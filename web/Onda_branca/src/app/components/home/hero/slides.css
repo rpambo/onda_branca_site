@@ -1,0 +1,64 @@
+.back, .back-homem{
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    min-height: 100vh;
+}
+
+.slide-content{
+    display: flex;
+    align-items: flex-end; /* desktop: centralizado */
+    min-height: 100vh;
+}
+
+.back{
+    background-image: url("/imagens/background.webp");
+}
+
+.back-homem{
+    background-image: url("/imagens/background-homem.webp");
+}
+
+h1, h2{
+  font-family: "Archivo" !important;
+}
+
+.uk-slideshow,
+.uk-slideshow-items,
+.uk-slideshow-items > div {
+    height: 100vh !important;
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+@media (max-width: 750px) {    
+    .back{
+        background-image: url("/imagens/mobile_1.webp");
+    }
+    .back-homem{
+        background-image: url("/imagens/mobile_2.webp");
+        
+    }
+    h1{
+        font-size: 35px !important;
+    }
+    p{
+        font-size: 19px !important;
+    }
+}
+
+@media (max-width: 1024px) {
+    .back{
+        background-image: url("/imagens/mobile_1.webp");
+    }
+    .back-homem{
+        background-image: url("/imagens/mobile_2.webp");
+        
+    }
+    h1{
+        font-size: 35px !important;
+    }
+    p{
+        font-size: 19px !important;
+    }
+}

@@ -6,16 +6,27 @@ import { Router, RouterModule, NavigationEnd } from '@angular/router';
 
 @Component({
   selector: 'app-navbar',
-  imports: [NgClass, ReactiveFormsModule, RouterModule, CommonModule],
+  imports: [ReactiveFormsModule, RouterModule, CommonModule],
   templateUrl: './navbar.html',
   styleUrl: './navbar.css'
 })
 
 export class Navbar {
+
   activeSection: string = "home"
   scrolled = false;
   comunidade = true
-  constructor(private route : Router, private cdr: ChangeDetectorRef){}
+  constructor(private route : Router, private cdr: ChangeDetectorRef){
+    this.route.events.subscribe(event => {
+    if (event instanceof NavigationEnd) {
+      const currentScroll = Math.max(window.pageYOffset || document.documentElement.scrollTop, 0);
+      this.atTop = currentScroll <= 10;
+      this.scrolledUp = true; // Garante que a navbar apareça ao navegar
+      this.lastScrollTop = currentScroll;
+    }
+  });
+  }
+
 
   ngOnInit(): void {
     //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
@@ -60,26 +71,22 @@ export class Navbar {
     this.activeSection = active
   }
 
-  fb = inject(NonNullableFormBuilder)
+ lastScrollTop = 0;
+scrolledUp = true;
+atTop = true;
 
-  form = this.fb.group({
-    search: this.fb.control("")
-  })
+@HostListener('window:scroll', [])
+onWindowScroll() {
+  const currentScroll = Math.max(window.pageYOffset || document.documentElement.scrollTop, 0);
 
-  onSearch(): void {
-    var term = this.form.controls.search.value.trim()
+  // Verifica se está no topo (com tolerância de até 10px, se desejar)
+  this.atTop = currentScroll <= 0;
 
-    if (!term){
-      term =  encodeURIComponent(" ")
-    }
-    
-    console.log("termo pesquisado ", term)
+  // Detecta se está rolando para cima
+  this.scrolledUp = currentScroll < this.lastScrollTop;
 
-    this.route.navigate(['/search'], {queryParams: {q : term}})
-  }
+  // Atualiza o último valor de scroll
+  this.lastScrollTop = currentScroll;
+}
 
-  @HostListener('window:scroll', [])
-  onWindowScroll() {
-    this.scrolled = window.scrollY > 50;
-  }
 }

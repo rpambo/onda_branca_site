@@ -1,0 +1,62 @@
+.hero{
+    background-image: url("/imagens/hero_renda_extra.webp");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 100vh;
+}
+
+@media (max-width: 1024px) {
+    .hero-content{
+        display: flex;
+        align-items: flex-end;
+    }
+    
+    .hero{
+        height: 656px !important;
+    }
+    .hero-content{
+        display: flex;
+        align-items: flex-end;
+    }
+    p{
+        font-size: 18px !important;
+    }
+    .desc{
+        margin-top: 30px !important;
+    }
+    .uk-button{
+        margin-top: 30px !important;
+    }
+}
+
+@media (max-width: 768px) {
+    .hero{
+        height: 556px !important;
+    }
+    .hero-content{
+        display: flex;
+        align-items: flex-end;
+    }
+    h1{
+        font-size: 1.6rem !important;
+        max-width: 100% !important;
+    }
+    p{
+        font-size: 16px !important;
+    }
+    .desc{
+        margin-top: 10px !important;
+    }
+    .uk-button{
+        margin-top: 10px !important;
+    }
+}
+
+.uk-button {
+  text-transform: lowercase;   /* força tudo em minúsculas */
+}
+
+.uk-button::first-letter {
+  text-transform: uppercase;   /* só a primeira letra da frase em maiúscula */
+}

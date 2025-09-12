@@ -1,0 +1,87 @@
+.titulo-principal {
+  font-size: 16px;
+  color: #094268;
+  font-weight: 300;
+  text-transform: uppercase;
+  position: relative;
+  display: inline-block;
+}
+
+@keyframes grow {
+    from { width: 20%; }
+    to { width: 80%; }
+}
+
+.titulo-principal .linha {
+  content: '';
+  position: absolute;
+  bottom: -3px;
+  left: 0;
+  width: 50%;
+  height: 3px;
+  background: linear-gradient(90deg, #00aaff, #0d5a90);
+  display: block;
+  animation: grow 2s infinite alternate;
+}
+
+.titulo-metricas{
+  max-width: 750px;
+}
+
+a[uk-slider-item].uk-invisible {
+    visibility: visible !important;
+    opacity: 1 !important;
+}
+
+@keyframes growMobile {
+  from { width: 0; }
+  to { width: 25%; }
+}
+
+@media (max-width: 768px) {
+  .uk-background-cover {
+    height: 200px !important; /* ajusta conforme o design */
+    background-position: center;
+    border-radius: 10px;
+  }
+  p, li{
+    font-size: 16px;
+  }
+  .titulo-principal{
+    display: block;
+  }
+  h2, .destaque{
+    font-size: 1.6rem !important;
+  }
+  .titulo-principal .linha{
+    width: 25%;
+    animation: growMobile 2s infinite alternate;
+  }
+    .uk-card-title{
+      font-size: .8rem !important;
+    }
+    .uk-card > div > p{
+      font-size: 13px !important;
+    }
+}
+
+@media (max-width:540px) {
+  /* Alternar lado no mobile */
+    .flex-container-mobile {
+      display: flex;
+      justify-content: flex-start;
+      flex-wrap: nowrap;
+    }
+    .flex-container-mobile > .uk-card{
+      max-width: 80% !important;
+    }  
+  .vertical-title {
+      writing-mode: vertical-rl;
+      transform: rotate(180deg);
+      text-align: center;
+    }
+    .tamanho{
+      max-width: 20%;
+    }
+}
+

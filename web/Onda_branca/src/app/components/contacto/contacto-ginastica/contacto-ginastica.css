@@ -1,0 +1,126 @@
+.zoom-hover {
+  transition: transform 2s ease; /* controla a velocidade do zoom */
+}
+
+.zoom-container:hover .zoom-hover {
+  transform: scale(1.08); /* aumenta a imagem ao passar o mouse */
+}
+
+.efeito-cantos {
+  position: relative;
+  overflow: hidden;
+}
+
+/* Círculos decorativos suaves */
+.circulo {
+  position: absolute;
+  width: 320px;
+  height: 320px;
+  border-radius: 10%;
+  background-color: #04165D;
+  filter: blur(30px);   /* deixa suave */
+  transition: all 1s ease;
+  
+  pointer-events: none; /* não bloqueia clique no conteúdo */
+}
+
+/* Superior direito */
+.circulo.topo {
+  top: -60px;
+  right: -60px;
+}
+
+/* Inferior direito */
+.circulo.baixo {
+  
+  bottom: -60px;
+  left: -60px;
+  background-color: #04165D;
+}
+
+/* Animação hover */
+.efeito-cantos:hover .circulo.topo {
+  top: 90px;         /* desce em vez de subir */
+  opacity: 0.3;        
+  transform: scale(1.1);
+}
+
+.efeito-cantos:hover .circulo.baixo {
+  bottom: 90px;      /* sobe em vez de descer */
+  opacity: 0.6;    
+  transform: scale(1.1);
+}
+
+.uk-button:hover{
+    background-color: #c467bf !important;
+    color: white !important;
+    border: 1px solid #c467bf;
+}
+.margin-left{
+  margin-left: 100px !important;
+}
+
+
+.titulo-principal {
+  font-size: 16px;
+  color: white;
+  font-weight: 300;
+  text-transform: uppercase;
+  position: relative;
+  display: inline-block;
+}
+
+.titulo-principal .linha {
+  content: '';
+  position: absolute;
+  bottom: -3px;
+  left: 0;
+  width: 50%;
+  height: 3px;
+  background: linear-gradient(90deg, #00aaff, #0d5a90);
+  display: block;
+  animation: grow 2s infinite alternate;
+}
+
+@keyframes grow {
+    from { width: 20%; }
+    to { width: 80%; }
+}
+
+@keyframes growMobile {
+  from { width: 0; }
+  to { width: 25%; }
+}
+
+@media (max-width:768px) {
+  .uk-container{
+    padding-left: 20px;
+    padding-right: 30px;
+    padding-top: 100px !important;
+    padding-bottom: 100px !important;
+  }
+  .margin-left{
+    margin-left: 0 !important;
+  }
+  .titulo-metricas {
+    text-align: left;
+  }
+
+  .titulo-principal {
+    display: block;
+    font-size: 16px;
+    margin-bottom: 10px;
+  }
+  .titulo-principal .linha{
+    width: 25%;
+    animation: growMobile 2s infinite alternate;
+  }
+}
+
+.uk-button {
+  text-transform: lowercase;   /* força tudo em minúsculas */
+}
+
+.uk-button::first-letter {
+  text-transform: uppercase;   /* só a primeira letra da frase em maiúscula */
+}

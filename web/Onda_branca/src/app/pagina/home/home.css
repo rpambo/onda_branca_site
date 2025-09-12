@@ -1,0 +1,13 @@
+.header-text {
+  font-size: clamp(18px, 4vw, 32px);
+  font-weight: bold;
+  color: white;
+  margin: 0;
+  line-height: 1.4;
+}
+
+@media (max-width: 760px) {
+  .banner{
+    border-radius: 0 !important;
+  }
+}

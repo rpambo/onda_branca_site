@@ -1,0 +1,49 @@
+.uk-button{
+  transition: all 0.3s ease;
+}
+
+.uk-button:hover{
+  transform: scale(1.09);
+  background-color: #9B73A3 !important;
+  color: white !important;
+}
+
+.back{
+    background-image: url("/onda/imagens/Group.png");
+    background-size: cover;
+    background-position: center ;
+    background-repeat: no-repeat;
+    background-blend-mode: darken;
+    background-attachment: fixed;
+    border-radius: 20px;
+}
+
+.link-podcast {
+  transition: transform 0.3s ease;
+}
+
+.link-podcast:hover {
+  transform: scale(1.1); /* aumenta 10% */
+}
+
+.play:hover{
+  background-color: #094268ad !important;
+}
+.avancar:hover{
+  background-color: rgba(223, 216, 216, 0.477) !important;
+}
+.card-service{
+  transition: all 0.2s ease;
+}
+
+.card-service:hover {
+  border: 2px solid #094268 !important;
+}
+
+.card-podcast{
+  transition: all 0.2s ease;
+}
+
+.card-podcast:hover {
+  border: 2px solid #094268 !important;
+}

@@ -1,6 +1,7 @@
 {
   "dependencies": {
     "angularx-flatpickr": "^8.1.0",
-    "flatpickr": "^4.6.13"
+    "flatpickr": "^4.6.13",
+    "particles.js": "^2.0.0"
   }
 }
