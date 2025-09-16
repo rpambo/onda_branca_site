@@ -6,3 +6,10 @@
   background-color: #094268 !important;
   color: white !important;
 }
+
+.slogan{
+  text-transform: lowercase;
+}
+.slogan::first-letter{
+  text-transform: uppercase;
+}

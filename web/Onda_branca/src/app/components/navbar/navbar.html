@@ -30,8 +30,9 @@
                 <div style="border-left: 1px white solid;">
                   <ul class="uk-nav uk-navbar-dropdown-nav" style="max-width: 250px;">
                     <li><a style="font-size: 18px !important; color: white !important;" [routerLink]="['/sobre']">Sobre a Onda Branca</a></li>
-                    <li><a style="font-size: 18px !important; color: white !important;" [routerLink]="['/missao']">Nossa Missão</a></li>
-                    <li><a style="font-size: 18px !important; color: white !important;" [routerLink]="['/valores']">Nossos Valores</a></li>
+                    <li><a style="font-size: 18px !important; color: white !important;" [routerLink]="['/sobre']" fragment="missao">Nossa Missão</a></li>
+                    <li><a style="font-size: 18px !important; color: white !important;" [routerLink]="['/sobre']" fragment="valores">Nossa valores</a></li>
+                    <li><a style="font-size: 18px !important; color: white !important;" [routerLink]="['/sobre']" fragment="vissao">Nossos visão</a></li>
                   </ul>
                 </div>
               </div>
@@ -103,8 +104,8 @@
       <!-- Botão Hambúrguer (mobile only) -->
       <div class="uk-navbar-right uk-hidden@s">
         <a class="uk-navbar-toggle" uk-toggle="target: #offcanvas-nav">
-          <span class="uk-icon" uk-icon="icon: more-vertical"></span> 
-          <span class="uk-margin-small-right">Menu</span>
+          <span style="color: white; font-weight: bold;" class="uk-icon" uk-icon="icon: more-vertical"></span> 
+          <span style="color: white; font-weight: bold;" class="uk-margin-small-right">Menu</span>
         </a>
       </div>
 
