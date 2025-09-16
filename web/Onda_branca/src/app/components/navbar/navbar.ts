@@ -1,8 +1,8 @@
-import { CommonModule, NgClass} from '@angular/common';
-import { ChangeDetectorRef, Component, HostListener, inject } from '@angular/core';
-import { NonNullableFormBuilder } from '@angular/forms';
-import { ReactiveFormsModule} from '@angular/forms';
+import { CommonModule } from '@angular/common';
+import { ChangeDetectorRef, Component, HostListener, Inject, PLATFORM_ID } from '@angular/core';
+import { ReactiveFormsModule } from '@angular/forms';
 import { Router, RouterModule, NavigationEnd } from '@angular/router';
+import { isPlatformBrowser } from '@angular/common';
 
 @Component({
   selector: 'app-navbar',
@@ -10,32 +10,44 @@ import { Router, RouterModule, NavigationEnd } from '@angular/router';
   templateUrl: './navbar.html',
   styleUrl: './navbar.css'
 })
-
 export class Navbar {
 
-  activeSection: string = "home"
+  activeSection: string = "home";
   scrolled = false;
-  comunidade = true
-  constructor(private route : Router, private cdr: ChangeDetectorRef){
+  comunidade = true;
+
+  lastScrollTop = 0;
+  scrolledUp = true;
+  atTop = true;
+
+  private isBrowser: boolean;
+
+  constructor(
+    private route: Router,
+    private cdr: ChangeDetectorRef,
+    @Inject(PLATFORM_ID) private platformId: Object
+  ) {
+    this.isBrowser = isPlatformBrowser(this.platformId);
+
     this.route.events.subscribe(event => {
-    if (event instanceof NavigationEnd) {
-      const currentScroll = Math.max(window.pageYOffset || document.documentElement.scrollTop, 0);
-      this.atTop = currentScroll <= 10;
-      this.scrolledUp = true; // Garante que a navbar apareça ao navegar
-      this.lastScrollTop = currentScroll;
-    }
-  });
+      if (event instanceof NavigationEnd && this.isBrowser) {
+        const currentScroll = Math.max(
+          window.pageYOffset || document.documentElement.scrollTop,
+          0
+        );
+        this.atTop = currentScroll <= 10;
+        this.scrolledUp = true;
+        this.lastScrollTop = currentScroll;
+      }
+    });
   }
 
-
   ngOnInit(): void {
-    //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
-    //Add 'implements OnInit' to the class.
     const currentUrl = this.route.url;
     if (currentUrl.includes('/comunidade')) {
-    this.comunidade = false;
+      this.comunidade = false;
     }
-    
+
     this.route.events.subscribe(event => {
       if (event instanceof NavigationEnd) {
         const url = event.urlAfterRedirects;
@@ -48,15 +60,15 @@ export class Navbar {
           this.activeSection = 'radio';
         } else if (url.includes('treinamentos')) {
           this.activeSection = 'treinamentos';
-        } else if (url.includes('bem-estar')){
+        } else if (url.includes('bem-estar')) {
           this.activeSection = 'bem-estar';
         } else if (url.includes('testemunho')) {
           this.activeSection = 'testemunho';
         } else if (url.includes('/publicacao')) {
           this.activeSection = 'publicacao';
-        } else if (url.includes('/comunidade')){
-          this.comunidade = false
-          this.cdr.detectChanges()
+        } else if (url.includes('/comunidade')) {
+          this.comunidade = false;
+          this.cdr.detectChanges();
         } else {
           this.activeSection = '';
         }
@@ -64,29 +76,24 @@ export class Navbar {
     });
   }
 
-  setActive(active: string){
-    if (active == "comunidade"){
-      this.comunidade = false
+  setActive(active: string) {
+    if (active === "comunidade") {
+      this.comunidade = false;
     }
-    this.activeSection = active
+    this.activeSection = active;
   }
 
- lastScrollTop = 0;
-scrolledUp = true;
-atTop = true;
+  @HostListener('window:scroll', [])
+  onWindowScroll() {
+    if (!this.isBrowser) return; // só executa no browser
 
-@HostListener('window:scroll', [])
-onWindowScroll() {
-  const currentScroll = Math.max(window.pageYOffset || document.documentElement.scrollTop, 0);
+    const currentScroll = Math.max(
+      window.pageYOffset || document.documentElement.scrollTop,
+      0
+    );
 
-  // Verifica se está no topo (com tolerância de até 10px, se desejar)
-  this.atTop = currentScroll <= 0;
-
-  // Detecta se está rolando para cima
-  this.scrolledUp = currentScroll < this.lastScrollTop;
-
-  // Atualiza o último valor de scroll
-  this.lastScrollTop = currentScroll;
-}
-
+    this.atTop = currentScroll <= 0;
+    this.scrolledUp = currentScroll < this.lastScrollTop;
+    this.lastScrollTop = currentScroll;
+  }
 }

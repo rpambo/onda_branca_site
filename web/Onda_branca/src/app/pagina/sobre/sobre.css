@@ -1,5 +1,5 @@
 .hero{
-    background-image: url("/onda/imagens/sobre.png");
+    background-image: url("/imagens/sobre.png");
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -11,4 +11,105 @@ blockquote{
   border-left: solid 3px #0d5a90;
   padding: 15px;
   color: #212121;
+}
+
+.titulo-principal {
+  font-size: 16px;
+  color: #094268;
+  font-weight: 300;
+  text-transform: uppercase;
+  position: relative;
+  display: inline-block;
+}
+
+@keyframes grow {
+    from { width: 20%; }
+    to { width: 80%; }
+}
+
+.titulo-principal .linha {
+  content: '';
+  position: absolute;
+  bottom: -3px;
+  left: 0;
+  width: 50%;
+  height: 3px;
+  background: linear-gradient(90deg, #00aaff, #0d5a90);
+  display: block;
+  animation: grow 2s infinite alternate;
+}
+
+.titulo-metricas{
+  max-width: 550px;
+}
+
+@keyframes growMobile {
+  from { width: 0; }
+  to { width: 25%; }
+}
+
+@media (max-width: 1024px) {
+  .titulo-principal{
+    display: block;
+  }
+  h2, .destaque{
+    font-size: 1.6rem !important;
+  }
+
+  .titulo-principal .linha{
+    width: 25%;
+    animation: growMobile 2s infinite alternate;
+  }  
+  .hero-content{
+        display: flex;
+        align-items: flex-end;
+    }
+    
+    .hero{
+        height: 656px !important;
+    }
+    .hero-content{
+        display: flex;
+        align-items: flex-end;
+    }
+    p{
+        font-size: 18px !important;
+    }
+    .desc{
+        margin-top: 30px !important;
+    }
+    .uk-button{
+        margin-top: 30px !important;
+    }
+}
+
+@media (max-width: 768px) {
+    .hero{
+        height: 556px !important;
+    }
+    .hero-content{
+        display: flex;
+        align-items: flex-end;
+    }
+    h1{
+        font-size: 1.6rem !important;
+        max-width: 100% !important;
+    }
+    p{
+        font-size: 16px !important;
+    }
+    .desc{
+        margin-top: 10px !important;
+    }
+    .uk-button{
+        margin-top: 10px !important;
+    }
+}
+
+.uk-button {
+  text-transform: lowercase;   /* força tudo em minúsculas */
+}
+
+.uk-button::first-letter {
+  text-transform: uppercase;   /* só a primeira letra da frase em maiúscula */
 }

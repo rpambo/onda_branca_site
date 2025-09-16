@@ -9,6 +9,9 @@ import { GestaoDeSaudeMentalParaEmpresa } from './pagina/gestao-de-saude-mental-
 import { RendaExtra } from './pagina/renda-extra/renda-extra';
 import { ProgramaGinasticaLaboral } from './pagina/programa-ginastica-laboral/programa-ginastica-laboral';
 import { PalestraEWorkshop } from './pagina/palestra-e-workshop/palestra-e-workshop';
+import { ProgramaDeSaudeMental } from './pagina/programa-de-saude-mental/programa-de-saude-mental';
+import { PoliticaPrivacidade } from './components/politica-privacidade/politica-privacidade';
+import { TermoDeUso } from './components/termo-de-uso/termo-de-uso';
 
 export const routes: Routes = [
   {path:"", component: Home},
@@ -21,4 +24,7 @@ export const routes: Routes = [
   {path:"programa-de-renda-extra", component: RendaExtra},
   {path:"programa-de-ginastica-laboral", component: ProgramaGinasticaLaboral},
   {path:"palestra-e-workshop", component: PalestraEWorkshop},
+  {path:"programa-de-saude-mental-no-trabalho", component: ProgramaDeSaudeMental},
+  {path:"politica-de-privacidade", component: PoliticaPrivacidade},
+  {path:"termo-de-uso", component: TermoDeUso}
 ];

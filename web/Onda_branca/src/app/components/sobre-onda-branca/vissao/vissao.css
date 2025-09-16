@@ -1,0 +1,65 @@
+.visao-section {
+  position: relative;
+  margin-bottom: 10px;
+  border-radius: 10px;
+  background: url("/imagens/vissao.png") no-repeat center center;
+  background-size: cover;
+  padding: 80px 20px;
+  color: white;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+}
+
+/* título vertical no desktop */
+.visao-title {
+  text-transform: uppercase;
+  writing-mode: vertical-rl;
+  text-orientation: upright;
+  font-size: 34px;
+  font-weight: bold;
+  color: white;
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 20px;
+  transform: translateY(-50%);
+}
+
+/* texto à direita */
+.visao-text {
+  position: relative;
+  max-width: 450px;
+  margin-left: auto;
+  margin-right: 100px;
+  font-weight: 500;
+  font-size: 18px;
+  display: grid;
+  gap: 20px;
+}
+
+/* -------- Responsivo -------- */
+@media (max-width: 768px) {
+  .visao-section {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 40px 20px;
+  }
+
+  .visao-title {
+    position: static;
+    writing-mode: horizontal-tb;
+    text-orientation: initial;
+    font-size: 36px;
+    margin-bottom: 20px;
+    transform: none;
+  }
+
+  .visao-text {
+    margin: 0;
+    max-width: 100%;
+    font-size: 16px;
+  }
+}

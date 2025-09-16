@@ -61,4 +61,22 @@ h1, h2{
     p{
         font-size: 19px !important;
     }
+    .desc  {
+    position: static !important;   /* tira o absolute */
+    text-align: left !important;   /* ajusta alinhamento */
+    margin-top: 20px;              /* espaço embaixo do texto */
+  }
+
+  .desc a.uk-button {
+    display: inline-block;         /* mantém estilo de botão */
+    width: auto;                   /* largura automática */
+  }
+}
+
+.uk-button {
+  text-transform: lowercase;   /* força tudo em minúsculas */
+}
+
+.uk-button::first-letter {
+  text-transform: uppercase;   /* só a primeira letra da frase em maiúscula */
 }

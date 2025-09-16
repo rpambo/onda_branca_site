@@ -18,10 +18,10 @@
               Sobre a Onda Branca
             </a>
 
-            <div class="uk-navbar-dropdown uk-navbar-dropdown-width-1-1" 
+            <div class="uk-navbar-dropdown uk-padding-large custom-dropdown uk-navbar-dropdown-width-1-1" 
                 uk-dropdown="mode: click, hover; delay-show: 200; delay-hide: 200; stretch: x"
                 hidden
-                style="background-color: #036ef2;">
+                style="background-color: #00224b;">
               <div class="uk-drop-grid uk-child-width-1-2 uk-grid uk-drop-grid-divider uk-padding-medium">
                 <div>
                   <h1 style="color: white; font-size: 32px; font-weight: 500;">Cuidar da mente é investir na produtividade.</h1>
@@ -38,9 +38,55 @@
             </div>
           </li>
 
-          <li [class.uk-active]="activeSection === 'treinamentos'">
-            <a href="#treinamentos" uk-scroll (click)="setActive('treinamentos')">Serviços</a>
-          </li>
+          <li routerLinkActive="uk-active" [routerLinkActiveOptions]="{ exact: false }">
+  <a href="javascript:void(0)" uk-scroll (click)="setActive('treinamentos')">Serviços</a>
+  <div class="uk-navbar-dropdown uk-padding-large custom-dropdown uk-navbar-dropdown-width-1-1" 
+      uk-dropdown="mode: click, hover; delay-show: 200; delay-hide: 200; stretch: x;"
+      hidden
+      style="background-color: #00224b;">
+      
+    <div class="uk-drop-grid uk-child-width-1-2 uk-grid uk-drop-grid-divider uk-padding-medium">
+
+      <!-- Texto (lado esquerdo) -->
+      <div>
+        <h1 style="color: white; font-size: 32px; font-weight: 500;">
+          Soluções que transformam bem-estar em resultados.
+        </h1>
+        <p style="color: white; font-size: 18px;">
+          Do diagnóstico às ações práticas, cuidamos da saúde mental da sua equipa.
+        </p>
+      </div>
+
+      <!-- Menus (lado direito em duas colunas) -->
+      <div style="border-left: 1px white solid;">
+        <div class="uk-grid uk-child-width-1-2@s" uk-grid>
+          
+          <!-- Primeira coluna -->
+          <div>
+            <ul class="uk-nav uk-navbar-dropdown-nav" style="max-width: 250px;">
+              <li><a style="font-size: 18px; color: white;" [routerLink]="['/mentoria-de-saude-mental-para-gestores']">Mentoria de saúde mental para gestores</a></li>
+              <li><a style="font-size: 18px; color: white;" [routerLink]="['/antendimento-empressarial']">Atendimento empresarial</a></li>
+              <li><a style="font-size: 18px; color: white;" [routerLink]="['/gestao-de-saude-mental-para-empressa']">Gestão de programa de saúde mental para empresas</a></li>
+              <li><a style="font-size: 18px; color: white;" [routerLink]="['/programa-de-renda-extra']">Programa de Renda Extra</a></li>
+            </ul>
+          </div>
+          
+          <!-- Segunda coluna -->
+          <div>
+            <ul class="uk-nav uk-navbar-dropdown-nav" style="max-width: 250px;">
+              <li><a style="font-size: 18px; color: white;" [routerLink]="['/programa-de-ginastica-laboral']">O programa de ginástica laboral</a></li>
+              <li><a style="font-size: 18px; color: white;" [routerLink]="['/palestra-e-workshop']">Palestras e workshops</a></li>
+              <li><a style="font-size: 18px; color: white;" [routerLink]="['/programa-de-saude-mental-no-trabalho']">Programa de saúde mental no trabalho</a></li>
+            </ul>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+</li>
+
           <li [class.uk-active]="activeSection === 'onair'">
             <a [routerLink]="['/on-air']" uk-scroll (click)="setActive('onair')">On Air</a>
           </li>

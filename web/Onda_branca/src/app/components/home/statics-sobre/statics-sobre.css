@@ -1,0 +1,114 @@
+/* Degradê nos números */
+.gradient-number {
+    font-size: 60px;
+    font-weight: bold;
+    background: linear-gradient(90deg, #00aaff, #0d5a90);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    display: inline-block;
+    margin-bottom: 10px;
+}
+
+.gradient-number.big {
+    font-size: 120px;
+    line-height: 1;
+}
+
+.metric.destaque {
+  border-top: 1px solid transparent; /* precisa ser transparente */
+  border-image: radial-gradient(circle 160px at center, #00aaff, #F1F6FB) 1;
+  border-image-slice: 1;
+  margin-bottom: 60px;
+  padding-top: 20px;
+  text-align: center;
+}
+
+
+/* Efeito no divider animado */
+@keyframes grow {
+    from { width: 20%; }
+    to { width: 80%; }
+}
+
+.titulo-principal {
+  font-size: 16px;
+  color: #094268;
+  font-weight: 300;
+  text-transform: uppercase;
+  position: relative;
+  display: inline-block;
+}
+
+.titulo-principal .linha {
+  content: '';
+  position: absolute;
+  bottom: -3px;
+  left: 0;
+  width: 50%;
+  height: 3px;
+  background: linear-gradient(90deg, #00aaff, #0d5a90);
+  display: block;
+  animation: grow 2s infinite alternate;
+}
+
+.titulo-metricas{
+  max-width: 550px;
+}
+
+@media (max-width: 1024px) {
+  .gradient-number.big {
+    font-size: 90px;
+  }
+}
+
+@media (max-width: 768px) {
+  .uk-section{
+    padding-top: 50px !important;
+  }
+  .titulo-metricas {
+    text-align: left;
+  }
+
+  .titulo-principal{
+    display: block;
+  }
+  h2, .destaque{
+    font-size: 1.6rem !important;
+  }
+
+  .titulo-principal .linha{
+    width: 25%;
+    animation: growMobile 2s infinite alternate;
+  }
+.gradient-number {
+    font-size: 40px;
+  }
+  .gradient-number.big {
+    font-size: 70px;
+  }
+  .metric.destaque {
+    margin-bottom: 10px;
+    margin-right: 10px;
+    padding-top: 15px;
+    max-width: 150px;
+    text-align: left;
+  }
+}
+
+@keyframes growMobile {
+  from { width: 0; }
+  to { width: 25%; }
+}
+
+@media (max-width: 480px) {
+  .gradient-number {
+    font-size: 32px;
+  }
+  .gradient-number.big {
+    font-size: 50px;
+  }
+  .metric.destaque {
+    margin-bottom: 30px;
+    padding-top: 10px;
+  }
+}

@@ -1,0 +1,81 @@
+.valores-section {
+  position: relative;
+  border-radius: 10px;
+  background: url("/imagens/valores.png") no-repeat center center;
+  background-size: cover;
+  padding: 60px 40px;
+  color: white;
+  overflow: hidden;
+}
+
+/* Overlay para dar contraste no texto */
+.valores-section::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 10px;
+  z-index: 1;
+}
+
+.valores-container {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  grid-template-columns: 50px 1fr;
+  gap: 40px;
+  width: 100%;
+}
+
+/* Título sempre na vertical à esquerda */
+.valores-title {
+  text-transform: uppercase;
+  writing-mode: vertical-rl;
+  text-orientation: upright;
+  font-size: 32px;
+  font-weight: bold;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+}
+
+/* Conteúdo flui normalmente (faz crescer o fundo) */
+.valores-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 30px;
+}
+
+.valores-grid h5 {
+  font-size: 20px;
+  font-weight: 500;
+  margin-bottom: 8px;
+  color: white;
+}
+
+/* -------- Responsivo -------- */
+@media (max-width: 1024px) {
+  .valores-container {
+    grid-template-columns: 150px 1fr;
+    gap: 20px;
+  }
+  .valores-title {
+    font-size: 40px;
+  }
+  .valores-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .valores-container {
+    grid-template-columns: 1fr;
+  }
+  .valores-title {
+    writing-mode: horizontal-tb;
+    font-size: 32px;
+    margin-bottom: 20px;
+    justify-content: flex-start;
+  }
+}

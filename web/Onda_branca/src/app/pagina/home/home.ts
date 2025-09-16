@@ -7,7 +7,7 @@ import { Services } from '../../components/home/services/services';
 import { Recuroseapoi } from "../../components/home/recuroseapoi/recuroseapoi";
 import { CommonModule } from '@angular/common';
 import { Contactos } from "../../components/contacto/contacto-principal/contactos";
-import { StaticsSobre } from "../../components/statics-sobre/statics-sobre";
+import { StaticsSobre } from "../../components/home/statics-sobre/statics-sobre";
 
 declare var UIkit: any; // para usar UIkit direto
 

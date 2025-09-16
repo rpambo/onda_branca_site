@@ -4,10 +4,10 @@ import { Navbar } from "../../components/navbar/navbar";
 import { Footer } from '../../components/footer/footer';
 import { Contactos } from "../../components/contacto/contacto-principal/contactos";
 import { Historia } from "../../components/historia/historia";
-import { Missao } from '../../components/missao/missao';
-import { Vissao } from "../../components/vissao/vissao";
-import { Values } from "../../components/values/values";
-import { StaticsSobre } from '../../components/statics-sobre/statics-sobre';
+import { Missao } from '../../components/sobre-onda-branca/missao/missao';
+import { Vissao } from "../../components/sobre-onda-branca/vissao/vissao";
+import { Values } from "../../components/sobre-onda-branca/values/values";
+import { StaticsSobre } from '../../components/home/statics-sobre/statics-sobre';
 
 
 @Component({

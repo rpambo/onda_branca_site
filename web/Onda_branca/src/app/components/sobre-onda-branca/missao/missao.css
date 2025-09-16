@@ -1,0 +1,63 @@
+.missao-section {
+  position: relative;
+  margin-bottom: 10px;
+  border-radius: 10px;
+  background: url("/imagens/missao.png") no-repeat center center;
+  background-size: cover;
+  padding: 80px 20px;
+  color: white;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  flex-wrap: wrap; /* ajuda no mobile */
+}
+
+/* Título vertical no desktop */
+.missao-title {
+  text-transform: uppercase;
+  writing-mode: vertical-rl;
+  text-orientation: upright;
+  font-size: 34px;
+  font-weight: bold;
+  color: white;
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 20px;
+  transform: translateY(-50%);
+}
+
+/* Texto alinhado à direita no desktop */
+.missao-text {
+  position: relative;
+  max-width: 450px;
+  margin-left: auto;
+  margin-right: 100px;
+  font-weight: 500;
+  font-size: 18px;
+}
+
+/* -------- RESPONSIVO -------- */
+@media (max-width: 768px) {
+  .missao-section {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 40px 20px;
+  }
+
+  .missao-title {
+    position: static;
+    writing-mode: horizontal-tb; /* título horizontal */
+    text-orientation: initial;
+    font-size: 36px;
+    margin-bottom: 20px;
+    transform: none;
+  }
+
+  .missao-text {
+    margin: 0;
+    max-width: 100%;
+    font-size: 16px;
+  }
+}
